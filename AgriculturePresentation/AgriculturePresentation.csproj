@@ -50,4 +50,11 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Shared\Components\_DashboardScriptPartial\" />
+    <Folder Include="Views\Shared\Components\_DashboardTablePartial\" />
+    <Folder Include="Views\Shared\Components\_DashboardChartPartial\" />
+    <Folder Include="Views\Shared\Components\_DashboardOverviewPartial\" />
+  </ItemGroup>
+
 </Project>
