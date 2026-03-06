@@ -26,8 +26,8 @@ namespace AgriculturePresentation.ViewComponents
 
             ViewBag.urunPazarlama = c.Teams.Where(x => x.Title == "Ürün Pazarlama").Select(y => y.PersonName).FirstOrDefault();
             ViewBag.bakliyatYonetimi = c.Teams.Where(x => x.Title == "Bakliyat Yönetimi").Select(y => y.PersonName).FirstOrDefault();
-            ViewBag.sutUretici = c.Teams.Where(x => x.Title == "Süt Üreticisi").Select(y => y.PersonName).FirstOrDefault();
-            ViewBag.gubreYonetimi = c.Teams.Where(x => x.Title == "Gübre Yönetimi").Select(y => y.PersonName).FirstOrDefault();
+            ViewBag.ekimUzmani = c.Teams.Where(x => x.Title == "Ekim Uzmanı").Select(y => y.PersonName).FirstOrDefault();
+            ViewBag.sutUreticisi = c.Teams.Where(x => x.Title == "Süt Üreticisi").Select(y => y.PersonName).FirstOrDefault();
             return View();
         }
     }

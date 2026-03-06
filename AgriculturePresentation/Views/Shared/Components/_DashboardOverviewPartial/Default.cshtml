@@ -24,7 +24,6 @@
                                         <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <h5 class="mb-0 d-inline-block">@DateTime.Now.ToShortDateString()</h5>
                                         </a>
-
                                     </div>
                                 </div>
                             </div>
@@ -80,28 +79,28 @@
                                 <i class="mdi mdi-download me-3 icon-lg text-warning"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">İndirmeler</small>
-                                    <h5 class="me-2 mb-0">2233783</h5>
+                                    <h5 class="me-2 mb-0">2.233.783</h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-eye me-3 icon-lg text-success"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">Toplam Görüntüleme</small>
-                                    <h5 class="me-2 mb-0">9833550</h5>
+                                    <h5 class="me-2 mb-0">9.833.550</h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-currency-usd me-3 icon-lg text-danger"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">Hasılat</small>
-                                    <h5 class="me-2 mb-0">$577545</h5>
+                                    <h5 class="me-2 mb-0">577.545 USD</h5>
                                 </div>
                             </div>
                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-flag me-3 icon-lg text-danger"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Flagged</small>
-                                    <h5 class="me-2 mb-0">3497843</h5>
+                                    <small class="mb-1 text-muted">Sorun Bildirimi</small>
+                                    <h5 class="me-2 mb-0">147</h5>
                                 </div>
                             </div>
                         </div>
@@ -109,18 +108,20 @@
                     <div class="tab-pane fade" id="purchases" role="tabpanel" aria-labelledby="purchases-tab">
                         <div class="d-flex flex-wrap justify-content-xl-between">
                             <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                               
                                 <i class="mdi mdi-calendar-heart icon-lg me-3 text-primary"></i>
+                               
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Start date</small>
+                                    <small class="mb-1 text-muted">Başlangıç Tarihi</small>
                                     <div class="dropdown">
                                         <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <h5 class="mb-0 d-inline-block">@DateTime.Now.ToShortDateString()</h5>
                                         </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
+                                        @* <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
                                             <a class="dropdown-item" href="#">12 Aug 2018</a>
                                             <a class="dropdown-item" href="#">22 Sep 2018</a>
                                             <a class="dropdown-item" href="#">21 Oct 2018</a>
-                                        </div>
+                                        </div> *@
                                     </div>
                                 </div>
                             </div>
@@ -141,15 +142,15 @@
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-download me-3 icon-lg text-warning"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Sü Üretici</small>
-                                    <h5 class="me-2 mb-0">@ViewBag.sutUretici</h5>
+                                    <small class="mb-1 text-muted">Süt Üreticici</small>
+                                    <h5 class="me-2 mb-0">@ViewBag.sutUreticisi</h5>
                                 </div>
                             </div>
                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                 <i class="mdi mdi-flag me-3 icon-lg text-danger"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Gübre Yönetimi</small>
-                                    <h5 class="me-2 mb-0">@ViewBag.gubreYonetimi</h5>
+                                    <small class="mb-1 text-muted">Ekim Uzmanı</small>
+                                    <h5 class="me-2 mb-0">@ViewBag.ekimUzmani</h5>
                                 </div>
                             </div>
                         </div>
