@@ -2,7 +2,7 @@
 
 namespace AgriculturePresentation.Controllers
 {
-    public class DashboardController : Controller
+    public class DashboardController : AdminBaseController
     {
         public IActionResult Index()
         {

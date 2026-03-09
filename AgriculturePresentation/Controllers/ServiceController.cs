@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AgriculturePresentation.Controllers
 {
-    public class ServiceController : Controller
+    public class ServiceController : AdminBaseController
     {
         private readonly IServiceService _serviceService;
 

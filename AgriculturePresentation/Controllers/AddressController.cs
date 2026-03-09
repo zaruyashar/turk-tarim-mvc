@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgriculturePresentation.Controllers
 {
-    public class AddressController : Controller
+    public class AddressController : AdminBaseController
     {
         private readonly IAddressService _addressService;
 

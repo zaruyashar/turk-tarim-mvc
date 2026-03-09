@@ -1,11 +1,12 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.ValidationRules;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgriculturePresentation.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : AdminBaseController
     {
         private readonly IAdminService _adminService;
 

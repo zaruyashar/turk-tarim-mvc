@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgriculturePresentation.Controllers
 {
-    public class ProfileController : Controller
+    public class ProfileController : AdminBaseController
     {
         private readonly UserManager<IdentityUser> _userManager;
 

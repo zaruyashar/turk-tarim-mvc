@@ -7,7 +7,7 @@ using OfficeOpenXml;
 
 namespace AgriculturePresentation.Controllers
 {
-    public class ReportController : Controller
+    public class ReportController : AdminBaseController
     {
         public IActionResult Index()
         {

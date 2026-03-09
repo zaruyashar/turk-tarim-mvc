@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgriculturePresentation.Controllers
 {
-    public class AnnouncementController : Controller
+    public class AnnouncementController : AdminBaseController
     {
         private readonly IAnnouncementService _announcementService;
 

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgriculturePresentation.Controllers
 {
-    public class ChartController : Controller
+    public class ChartController : AdminBaseController
     {
         public IActionResult Index()
         {

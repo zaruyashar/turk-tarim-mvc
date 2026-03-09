@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgriculturePresentation.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : AdminBaseController
     {
         private readonly IContactService _contactService;
 

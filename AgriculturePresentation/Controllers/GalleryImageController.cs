@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgriculturePresentation.Controllers
 {
-    public class GalleryImageController : Controller
+    public class GalleryImageController : AdminBaseController
     {
         private readonly IGalleryImageService _galleryImageService;
 

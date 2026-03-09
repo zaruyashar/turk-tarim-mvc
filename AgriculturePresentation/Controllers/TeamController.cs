@@ -8,7 +8,7 @@ using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace AgriculturePresentation.Controllers
 {
-    public class TeamController : Controller
+    public class TeamController : AdminBaseController
     {
         private readonly ITeamService _teamService;
 
