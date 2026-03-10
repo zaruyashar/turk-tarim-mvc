@@ -5,47 +5,44 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Profil Düzenleme Sayfası</h4>
             <form class="forms-sample" method="post">
-
                 <div class="form-group">
                     <label>E-posta Adresi</label>
                     <input type="text" class="form-control"
                            placeholder="E-posta adresini girin"
                            asp-for="Mail">
                 </div>
-
                 <div class="form-group">
                     <label>Telefon Numarası</label>
                     <input type="text" class="form-control"
                            placeholder="Telefon numarasını girin"
                            asp-for="Phone">
                 </div>
-
+                <div class="form-group">
+                    <label>Mevcut Şifre</label>
+                    <input type="password" class="form-control"
+                           placeholder="Mevcut şifrenizi girin"
+                           asp-for="CurrentPassword" />
+                </div>
                 <div class="form-group">
                     <label>Şifre</label>
                     <input type="password" class="form-control"
-                           placeholder="Şifreyi girin"
+                           placeholder="Yeni şifreyi girin"
                            asp-for="Password">
                 </div>
-
                 <div class="form-group">
                     <label>Şifre (Tekrar)</label>
                     <input type="password" class="form-control"
-                           placeholder="Şifreyi tekrar girin"
+                           placeholder="Yeni şifreyi tekrar girin"
                            asp-for="ConfirmPassword">
                 </div>
-
-                    <br />
-                    <button type="submit" class="btn btn-outline-info me-2">Kaydet</button>
+                <br />
+                <button type="submit" class="btn btn-outline-info me-2">Kaydet</button>
             </form>
         </div>
     </div>
 </div>
-
-
-

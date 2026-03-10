@@ -14,39 +14,81 @@ namespace AgriculturePresentation.Controllers
             _userManager = userManager;
         }
 
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var values = await _userManager.FindByNameAsync(User.Identity!.Name!);
+            var userName = User.Identity?.Name;
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            var values = await _userManager.FindByNameAsync(userName);
+
+            if (values == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
 
             UserEditViewModel userEditViewModel = new UserEditViewModel()
             {
-                Mail = values!.Email!,
-                Phone = values.PhoneNumber!,
-                Password = "", 
-                ConfirmPassword = "" 
+                Mail = values.Email ?? string.Empty,
+                Phone = values.PhoneNumber ?? string.Empty,
+                CurrentPassword = "",
+                Password = "",
+                ConfirmPassword = ""
             };
 
             return View(userEditViewModel);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Index(UserEditViewModel p)
         {
-            var values = await _userManager.FindByNameAsync(User.Identity!.Name!);
+            var userName = User.Identity?.Name;
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            var values = await _userManager.FindByNameAsync(userName);
+
+            if (values == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             if (p.Password == p.ConfirmPassword)
             {
-                values!.Email = p.Mail;
-                values!.PhoneNumber = p.Phone;
-                values!.PasswordHash = _userManager.PasswordHasher.HashPassword(values, p.Password);
-                var result = await _userManager.UpdateAsync(values);
+                var passwordChangeResult = await _userManager.ChangePasswordAsync(values, p.CurrentPassword, p.Password);
 
-                if (result.Succeeded)
+                if (passwordChangeResult.Succeeded)
                 {
+                    values.Email = p.Mail;
+                    values.PhoneNumber = p.Phone;
+
+                    await _userManager.UpdateAsync(values);
+
                     return RedirectToAction("Index", "Login");
                 }
+                else
+                {
+                    foreach (var item in passwordChangeResult.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
+                }
             }
-            return View();
+            else
+            {
+                ModelState.AddModelError("", "Şifreler birbiriyle uyuşmuyor.");
+            }
+
+            return View(p);
         }
     }
 }
