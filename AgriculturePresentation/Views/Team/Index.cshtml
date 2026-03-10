@@ -32,15 +32,19 @@
                                 <td>@item.TeamID</td>
                                 <td>@item.PersonName</td>
                                 <td>@item.Title</td>
-                                <td><a href="/Team/DeleteTeam/@item.TeamID" class="btn btn-outline-danger">Sil</a></td>
-                                <td><a href="/Team/EditTeam/@item.TeamID" class="btn btn-outline-success">Güncelle</a></td>
+                                <td>
+                                    <form asp-controller="Team" asp-action="DeleteTeam" asp-route-id="@item.TeamID" method="post">
+                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">Sil</button>
+                                    </form>
+                                </td>
+                                <td><a asp-controller="Team" asp-action="EditTeam" asp-route-id="@item.TeamID" class="btn btn-outline-success">Güncelle</a></td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
             <br />
-            <a href="/Team/AddTeam" class="btn btn-outline-info">Yeni Personel Girişi</a>
+            <a asp-controller="Team" asp-action="AddTeam" class="btn btn-outline-info">Yeni Personel Girişi</a>
         </div>
     </div>
 </div>

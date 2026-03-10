@@ -1,9 +1,10 @@
-﻿using BusinessLayer.Abstract;
+﻿using AgriculturePresentation.Models;
+using BusinessLayer.Abstract;
 using BusinessLayer.ValidationRules;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using FluentValidation.Results;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace AgriculturePresentation.Controllers
@@ -30,9 +31,21 @@ namespace AgriculturePresentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTeam(Team team)
+        public IActionResult AddTeam(TeamAddViewModel model)
         {
             TeamValidator validationRules = new TeamValidator();
+
+            Team team = new Team()
+            {
+                PersonName = model.Name,
+                Title = model.Title,
+                ImageUrl = model.ImageUrl,
+                FacebookUrl = model.FacebookUrl,
+                InstagramUrl = model.InstagramUrl,
+                WebsiteUrl = model.WebsiteUrl,
+                TwitterUrl = model.TwitterUrl
+            };
+
             ValidationResult result = validationRules.Validate(team);
 
             if (result.IsValid)
@@ -50,28 +63,64 @@ namespace AgriculturePresentation.Controllers
             return View();
         }
 
+
+        [HttpPost]
         public IActionResult DeleteTeam(int id)
         {
             var value = _teamService.GetById(id);
-            _teamService.Delete(value);
+            if (value != null)
+            {
+                _teamService.Delete(value);
+            }
             return RedirectToAction("Index");
         }
+
 
         [HttpGet]
         public IActionResult EditTeam(int id)
         {
             var value = _teamService.GetById(id);
-            return View(value);
+
+            if (value == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            TeamEditViewModel model = new TeamEditViewModel()
+            {
+                TeamID = value.TeamID,
+                Name = value.PersonName,
+                Title = value.Title,
+                ImageUrl = value.ImageUrl
+            };
+            return View(model);
         }
+
+
         [HttpPost]
-        public IActionResult EditTeam(Team team)
+        public IActionResult EditTeam(TeamEditViewModel model)
         {
+            var existingTeam = _teamService.GetById(model.TeamID);
+
+            if (existingTeam == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            existingTeam.PersonName = model.Name;
+            existingTeam.Title = model.Title;
+            existingTeam.ImageUrl = model.ImageUrl;
+            existingTeam.FacebookUrl = model.FacebookUrl;
+            existingTeam.InstagramUrl = model.InstagramUrl;
+            existingTeam.WebsiteUrl = model.WebsiteUrl;
+            existingTeam.TwitterUrl = model.TwitterUrl;
+
             TeamValidator validationRules = new TeamValidator();
-            ValidationResult result = validationRules.Validate(team);
+            ValidationResult result = validationRules.Validate(existingTeam);
 
             if (result.IsValid)
             {
-                _teamService.Update(team);
+                _teamService.Update(existingTeam);
                 return RedirectToAction("Index");
             }
             else
@@ -81,7 +130,7 @@ namespace AgriculturePresentation.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
-            return View();
+            return View(model);
         }
 
     }

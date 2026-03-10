@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Team
+﻿@model AgriculturePresentation.Models.TeamEditViewModel
 
 @{
     ViewData["Title"] = "EditTeam";
@@ -13,10 +13,10 @@
                 <div class="form-group">
                     @Html.HiddenFor(x => x.TeamID)
                     <label for="exampleInputName1">Ad Soyadı</label>
-                    <span asp-validation-for="PersonName" class="text-danger"></span>
+                    <span asp-validation-for="Name" class="text-danger"></span>
                     <input type="text" class="form-control"
                            placeholder="Ad soyadı"
-                           asp-for="PersonName">
+                           asp-for="Name">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail3">Ünvan</label>

@@ -27,8 +27,10 @@ namespace AgriculturePresentation
             builder.Services.ContainerDependencies();
 
 
-            builder.Services.AddControllersWithViews();
-
+            builder.Services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute());
+            });
 
 
             builder.Services.AddMvc(config =>

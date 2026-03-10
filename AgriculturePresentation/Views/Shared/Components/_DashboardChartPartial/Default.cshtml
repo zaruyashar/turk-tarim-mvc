@@ -59,7 +59,11 @@
 
                 <script>
                     const xValues = ["Buğday", "Arpa", "Mısır", "Mercimek", "Pirinç"];
-                    const yValues = [@ViewBag.v1, @ViewBag.v2, 44, 24, 15];
+                    const yValues = [
+                        @(ViewBag.v1 ?? 0),
+                        @(ViewBag.v2 ?? 0),
+                        44, 24, 15
+                        ];
                     const barColors = [
                       "#b91d47",
                       "#00aba9",
