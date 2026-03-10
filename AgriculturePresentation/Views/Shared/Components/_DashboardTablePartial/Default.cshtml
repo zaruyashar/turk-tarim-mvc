@@ -25,7 +25,11 @@
                                     <td>@item.Name</td>
                                     <td>@item.Mail</td>
                                     <td>@item.Date</td>
-                                    <td><a href="#" class="btn btn-primary">Mesajı Gör</a></td>
+                                    <td>
+                                        <a href="/Contact/MessageDetails/@item.ContactID" class="btn btn-primary" style="font-weight: bold !important; color: white !important;">
+                                            Mesajı Gör
+                                        </a>
+                                    </td>
                                 </tr>
                             }
                         </tbody>

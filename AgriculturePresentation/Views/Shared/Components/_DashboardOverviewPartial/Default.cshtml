@@ -4,153 +4,90 @@
             <div class="card-body dashboard-tabs p-0">
                 <ul class="nav nav-tabs px-4" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">İstatistik 1</a>
+                        <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Sistem Özeti</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="sales-tab" data-bs-toggle="tab" href="#sales" role="tab" aria-controls="sales" aria-selected="false">İstatistik 2</a>
+                        <a class="nav-link" id="roles-tab" data-bs-toggle="tab" href="#roles" role="tab" aria-controls="roles" aria-selected="false">Ekip Dağılımı</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="purchases-tab" data-bs-toggle="tab" href="#purchases" role="tab" aria-controls="purchases" aria-selected="false">Ekip Arkadaşlarımız ve Roller</a>
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">İletişim Verileri</a>
                     </li>
                 </ul>
                 <div class="tab-content py-0 px-0">
+
                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                         <div class="d-flex flex-wrap justify-content-xl-between">
-                            <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-calendar-heart icon-lg me-3 text-primary"></i>
+                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                <i class="mdi mdi-account-group me-3 icon-lg text-primary"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Tarih</small>
-                                    <div class="dropdown">
-                                        <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <h5 class="mb-0 d-inline-block">@DateTime.Now.ToShortDateString()</h5>
-                                        </a>
-                                    </div>
+                                    <small class="mb-1 text-muted">Toplam Ekip</small>
+                                    <h5 class="me-2 mb-0">@ViewBag.teamCount Kişi</h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-currency-usd me-3 icon-lg text-danger"></i>
+                                <i class="mdi mdi-buffer me-3 icon-lg text-success"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Çalışan Sayısı</small>
-                                    <h5 class="me-2 mb-0">@ViewBag.teamCount</h5>
+                                    <small class="mb-1 text-muted">Aktif Hizmetler</small>
+                                    <h5 class="me-2 mb-0">@ViewBag.serviceCount Birim</h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-eye me-3 icon-lg text-success"></i>
+                                <i class="mdi mdi-calendar-check me-3 icon-lg text-info"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Hizmet Sayısı</small>
-                                    <h5 class="me-2 mb-0">@ViewBag.serviceCount</h5>
-                                </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-download me-3 icon-lg text-warning"></i>
-                                <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Gelen Mesaj</small>
-                                    <h5 class="me-2 mb-0">@ViewBag.messageCount</h5>
-                                </div>
-                            </div>
-                            <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-flag me-3 icon-lg text-danger"></i>
-                                <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Son Ay Mesajları</small>
-                                    <h5 class="me-2 mb-0">@ViewBag.currentMonthMessage</h5>
+                                    <small class="mb-1 text-muted">Çalışma Yılı</small>
+                                    <h5 class="me-2 mb-0">@DateTime.Now.Year</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="sales" role="tabpanel" aria-labelledby="sales-tab">
+
+                    <div class="tab-pane fade" id="roles" role="tabpanel" aria-labelledby="roles-tab">
                         <div class="d-flex flex-wrap justify-content-xl-between">
-                            <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-calendar-heart icon-lg me-3 text-primary"></i>
-                                <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Tarih</small>
-                                    <div class="dropdown">
-                                        <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <h5 class="mb-0 d-inline-block">@DateTime.Now.ToShortDateString()</h5>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                                            <a class="dropdown-item" href="#">12 Aug 2025</a>
-                                            <a class="dropdown-item" href="#">22 Sep 2025</a>
-                                            <a class="dropdown-item" href="#">21 Oct 2025</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-download me-3 icon-lg text-warning"></i>
-                                <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">İndirmeler</small>
-                                    <h5 class="me-2 mb-0">2.233.783</h5>
-                                </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-eye me-3 icon-lg text-success"></i>
-                                <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Toplam Görüntüleme</small>
-                                    <h5 class="me-2 mb-0">9.833.550</h5>
-                                </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-currency-usd me-3 icon-lg text-danger"></i>
-                                <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Hasılat</small>
-                                    <h5 class="me-2 mb-0">577.545 USD</h5>
-                                </div>
-                            </div>
-                            <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-flag me-3 icon-lg text-danger"></i>
-                                <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Sorun Bildirimi</small>
-                                    <h5 class="me-2 mb-0">147</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="purchases" role="tabpanel" aria-labelledby="purchases-tab">
-                        <div class="d-flex flex-wrap justify-content-xl-between">
-                            <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                               
-                                <i class="mdi mdi-calendar-heart icon-lg me-3 text-primary"></i>
-                               
-                                <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Başlangıç Tarihi</small>
-                                    <div class="dropdown">
-                                        <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <h5 class="mb-0 d-inline-block">@DateTime.Now.ToShortDateString()</h5>
-                                        </a>
-                                        @* <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                                            <a class="dropdown-item" href="#">12 Aug 2018</a>
-                                            <a class="dropdown-item" href="#">22 Sep 2018</a>
-                                            <a class="dropdown-item" href="#">21 Oct 2018</a>
-                                        </div> *@
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-currency-usd me-3 icon-lg text-danger"></i>
+                                <i class="mdi mdi-seed me-3 icon-lg text-warning"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">Bakliyat Yönetimi</small>
-                                    <h5 class="me-2 mb-0">@ViewBag.bakliyatYonetimi</h5>
+                                    <h5 class="me-2 mb-0">@ViewBag.bakliyatYonetimi Uzman</h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-eye me-3 icon-lg text-success"></i>
+                                <i class="mdi mdi-cart-outline me-3 icon-lg text-primary"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">Ürün Pazarlama</small>
-                                    <h5 class="me-2 mb-0">@ViewBag.urunPazarlama</h5>
+                                    <h5 class="me-2 mb-0">@ViewBag.urunPazarlama Personel</h5>
                                 </div>
                             </div>
                             <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-download me-3 icon-lg text-warning"></i>
+                                <i class="mdi mdi-cow me-3 icon-lg text-secondary"></i>
                                 <div class="d-flex flex-column justify-content-around">
-                                    <small class="mb-1 text-muted">Süt Üreticici</small>
-                                    <h5 class="me-2 mb-0">@ViewBag.sutUreticisi</h5>
+                                    <small class="mb-1 text-muted">Süt Üreticisi</small>
+                                    <h5 class="me-2 mb-0">@ViewBag.sutUreticisi Birim</h5>
                                 </div>
                             </div>
                             <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                <i class="mdi mdi-flag me-3 icon-lg text-danger"></i>
+                                <i class="mdi mdi-sprout me-3 icon-lg text-success"></i>
                                 <div class="d-flex flex-column justify-content-around">
                                     <small class="mb-1 text-muted">Ekim Uzmanı</small>
-                                    <h5 class="me-2 mb-0">@ViewBag.ekimUzmani</h5>
+                                    <h5 class="me-2 mb-0">@ViewBag.ekimUzmani Danışman</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="d-flex flex-wrap justify-content-xl-between">
+                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                <i class="mdi mdi-email-open-outline me-3 icon-lg text-info"></i>
+                                <div class="d-flex flex-column justify-content-around">
+                                    <small class="mb-1 text-muted">Toplam Mesaj</small>
+                                    <h5 class="me-2 mb-0">@ViewBag.messageCount Adet</h5>
+                                </div>
+                            </div>
+                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                <i class="mdi mdi-trending-up me-3 icon-lg text-danger"></i>
+                                <div class="d-flex flex-column justify-content-around">
+                                    <small class="mb-1 text-muted">Bu Ayki Trafik</small>
+                                    <h5 class="me-2 mb-0">@ViewBag.currentMonthMessage Yeni</h5>
                                 </div>
                             </div>
                         </div>
