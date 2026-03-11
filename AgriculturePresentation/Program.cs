@@ -63,12 +63,23 @@ namespace AgriculturePresentation
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
             builder.Services.AddMvc();
+
+
             builder.Services.AddAuthentication(
-                CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(x =>
-                {
-                    x.LoginPath = "/Login/Index/";
-                });
+                    CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(x =>
+            {
+                x.LoginPath = "/Login/Index/";
+                x.LogoutPath = "/Login/Logout/";
+                x.Cookie.Name = ".Agriculture.Session";
+
+                x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                x.SlidingExpiration = true;
+
+                x.Cookie.HttpOnly = true;
+                x.Cookie.SameSite = SameSiteMode.Strict;
+                x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            });
 
 
 
@@ -81,9 +92,8 @@ namespace AgriculturePresentation
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-
             app.UseHttpsRedirection();
+
             app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404");
             app.UseRouting();
 
