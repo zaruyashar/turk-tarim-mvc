@@ -25,6 +25,10 @@ namespace AgriculturePresentation.Controllers
         public IActionResult EditAddress(int id)
         {
             var value = _addressService.GetById(id);
+            if (value == null)
+            {
+                return NotFound();
+            }
             return View(value);
         }
 

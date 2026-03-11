@@ -25,6 +25,10 @@ namespace AgriculturePresentation.Controllers
         public IActionResult DeleteMessage(int id)
         {
             var value = _contactService.GetById(id);
+            if (value == null)
+            {
+                return NotFound();
+            }
             _contactService.Delete(value);
             return RedirectToAction("Index");
         }
@@ -33,6 +37,10 @@ namespace AgriculturePresentation.Controllers
         public IActionResult MessageDetails(int id)
         {
             var value = _contactService.GetById(id);
+            if (value == null)
+            {
+                return NotFound();
+            }
             return View(value);
         }
     }

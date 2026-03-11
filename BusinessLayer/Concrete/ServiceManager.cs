@@ -18,11 +18,19 @@ namespace BusinessLayer.Concrete
 
         public void Delete(Service t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _serviceDal.Delete(t);
         }
 
         public Service GetById(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentException("ID değeri 0 veya negatif olamaz.", nameof(id));
+            }
             return _serviceDal.GetById(id);
         }
 
@@ -33,11 +41,19 @@ namespace BusinessLayer.Concrete
 
         public void Insert(Service t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _serviceDal.Insert(t);
         }
 
         public void Update(Service t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _serviceDal.Update(t);
         }
     }

@@ -37,6 +37,10 @@ namespace AgriculturePresentation.Controllers
         public IActionResult DeleteAnnouncement(int id)
         {
             var values = _announcementService.GetById(id);
+            if (values == null)
+            {
+                return NotFound();
+            }
             _announcementService.Delete(values);
             return RedirectToAction("Index");
         }
@@ -45,6 +49,10 @@ namespace AgriculturePresentation.Controllers
         public IActionResult EditAnnouncement(int id)
         {
             var values = _announcementService.GetById(id);
+            if (values == null)
+            {
+                return NotFound();
+            }
             return View(values);
         }
 

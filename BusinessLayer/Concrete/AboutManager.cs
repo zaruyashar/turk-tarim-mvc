@@ -18,12 +18,20 @@ namespace BusinessLayer.Concrete
 
         public void Delete(About t)
         {
-            throw new NotImplementedException();
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
+            _aboutDal.Delete(t);
         }
 
         public About GetById(int id)
         {
-            throw new NotImplementedException();
+            if (id <= 0)
+            {
+                throw new ArgumentException("ID değeri 0 veya negatif olamaz.", nameof(id));
+            }
+            return _aboutDal.GetById(id);
         }
 
         public List<About> GetListAll()
@@ -33,12 +41,20 @@ namespace BusinessLayer.Concrete
 
         public void Insert(About t)
         {
-            throw new NotImplementedException();
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
+            _aboutDal.Insert(t);
         }
 
         public void Update(About t)
         {
-            throw new NotImplementedException();
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
+            _aboutDal.Update(t);
         }
     }
 }

@@ -18,11 +18,19 @@ namespace BusinessLayer.Concrete
 
         public void Delete(GalleryImage t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _galleryImageDal.Delete(t);
         }
 
         public GalleryImage GetById(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentException("ID değeri 0 veya negatif olamaz.", nameof(id));
+            }
             return _galleryImageDal.GetById(id);
         }
 
@@ -33,11 +41,19 @@ namespace BusinessLayer.Concrete
 
         public void Insert(GalleryImage t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _galleryImageDal.Insert(t);
         }
 
         public void Update(GalleryImage t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _galleryImageDal.Update(t);
         }
     }

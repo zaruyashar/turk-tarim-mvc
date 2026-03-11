@@ -68,10 +68,11 @@ namespace AgriculturePresentation.Controllers
         public IActionResult DeleteTeam(int id)
         {
             var value = _teamService.GetById(id);
-            if (value != null)
+            if (value == null)
             {
-                _teamService.Delete(value);
+                return NotFound();
             }
+            _teamService.Delete(value);
             return RedirectToAction("Index");
         }
 
@@ -83,7 +84,7 @@ namespace AgriculturePresentation.Controllers
 
             if (value == null)
             {
-                return RedirectToAction("Index");
+                return NotFound();
             }
 
             TeamEditViewModel model = new TeamEditViewModel()
@@ -104,7 +105,7 @@ namespace AgriculturePresentation.Controllers
 
             if (existingTeam == null)
             {
-                return RedirectToAction("Index");
+                return NotFound();
             }
 
             existingTeam.PersonName = model.Name;
@@ -132,6 +133,5 @@ namespace AgriculturePresentation.Controllers
             }
             return View(model);
         }
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AgriculturePresentation.Models;
+using BusinessLayer.Abstract;
 using ClosedXML.Excel;
-using DataAccessLayer.Contexts;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
@@ -9,6 +9,15 @@ namespace AgriculturePresentation.Controllers
 {
     public class ReportController : AdminBaseController
     {
+        private readonly IContactService _contactService;
+        private readonly IAnnouncementService _announcementService;
+
+        public ReportController(IContactService contactService, IAnnouncementService announcementService)
+        {
+            _contactService = contactService;
+            _announcementService = announcementService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -44,19 +53,15 @@ namespace AgriculturePresentation.Controllers
 
         public List<ContactModel> ContactList()
         {
-            List<ContactModel> contactModels = new List<ContactModel>();
-            using (var context = new AgricultureContext())
+            var values = _contactService.GetListAll();
+            return values.Select(x => new ContactModel
             {
-                contactModels = context.Contacts.Select(x => new ContactModel
-                {
-                    ContactID = x.ContactID,
-                    ContactName = x.Name,
-                    ContactDate = x.Date,
-                    ContactMail = x.Mail,
-                    ContactMessage = x.Message
-                }).ToList();
-            }
-            return contactModels;
+                ContactID = x.ContactID,
+                ContactName = x.Name,
+                ContactDate = x.Date,
+                ContactMail = x.Mail,
+                ContactMessage = x.Message
+            }).ToList();
         }
 
         public IActionResult ContactReport()
@@ -71,14 +76,14 @@ namespace AgriculturePresentation.Controllers
                 workSheet.Cell(1, 5).Value = "Mesaj Tarihi";
 
                 int contactRowCount = 2;
-                foreach(var item in ContactList())
+                foreach (var item in ContactList())
                 {
                     workSheet.Cell(contactRowCount, 1).Value = item.ContactID;
                     workSheet.Cell(contactRowCount, 2).Value = item.ContactName;
                     workSheet.Cell(contactRowCount, 3).Value = item.ContactMail;
                     workSheet.Cell(contactRowCount, 4).Value = item.ContactMessage;
                     workSheet.Cell(contactRowCount, 5).Value = item.ContactDate;
-                    
+
                     contactRowCount++;
                 }
 
@@ -93,19 +98,15 @@ namespace AgriculturePresentation.Controllers
 
         public List<AnnouncementModel> AnnouncementList()
         {
-            List<AnnouncementModel> announcementModels = new List<AnnouncementModel>();
-            using (var context = new AgricultureContext())
+            var values = _announcementService.GetListAll();
+            return values.Select(x => new AnnouncementModel
             {
-                announcementModels = context.Announcements.Select(x => new AnnouncementModel
-                {
-                    Id = x.AnnouncementID,
-                    Status = x.Status,
-                    Date = x.Date,
-                    Description = x.Description,
-                    Title = x.Title
-                }).ToList();
-            }
-            return announcementModels;
+                Id = x.AnnouncementID,
+                Status = x.Status,
+                Date = x.Date,
+                Description = x.Description,
+                Title = x.Title
+            }).ToList();
         }
 
         public IActionResult AnnouncementReport()

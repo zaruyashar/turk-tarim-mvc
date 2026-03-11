@@ -11,37 +11,46 @@
         <div class="card-body">
             <h4 class="card-title">Ekip Arkadaşlarımız</h4>
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <td>#</td>
-                            <td>ID</td>
-                            <td>Ad</td>
-                            <td>Görev</td>
-                            <td>Sil</td>
-                            <td>Düzenle</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                @if (Model != null && Model.Any())
+                {
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <td class="py-1">
-                                    <img src="@item.ImageUrl" alt="image" />
-                                </td>
-                                <td>@item.TeamID</td>
-                                <td>@item.PersonName</td>
-                                <td>@item.Title</td>
-                                <td>
-                                    <form asp-controller="Team" asp-action="DeleteTeam" asp-route-id="@item.TeamID" method="post">
-                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">Sil</button>
-                                    </form>
-                                </td>
-                                <td><a asp-controller="Team" asp-action="EditTeam" asp-route-id="@item.TeamID" class="btn btn-outline-success">Güncelle</a></td>
+                                <td>#</td>
+                                <td>ID</td>
+                                <td>Ad</td>
+                                <td>Görev</td>
+                                <td>Sil</td>
+                                <td>Düzenle</td>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="py-1">
+                                        <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/default-avatar.png" : item.ImageUrl)" alt="image" />
+                                    </td>
+                                    <td>@item.TeamID</td>
+                                    <td>@(string.IsNullOrEmpty(item.PersonName) ? "Belirtilmemiş" : item.PersonName)</td>
+                                    <td>@(string.IsNullOrEmpty(item.Title) ? "Belirtilmemiş" : item.Title)</td>
+                                    <td>
+                                        <form asp-controller="Team" asp-action="DeleteTeam" asp-route-id="@item.TeamID" method="post">
+                                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">Sil</button>
+                                        </form>
+                                    </td>
+                                    <td><a asp-controller="Team" asp-action="EditTeam" asp-route-id="@item.TeamID" class="btn btn-outline-success">Güncelle</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="alert alert-warning">
+                        Sistemde henüz kayıtlı ekip arkadaşı bulunmamaktadır.
+                    </div>
+                }
             </div>
             <br />
             <a asp-controller="Team" asp-action="AddTeam" class="btn btn-outline-info">Yeni Personel Girişi</a>

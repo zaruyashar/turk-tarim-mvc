@@ -46,6 +46,10 @@ namespace AgriculturePresentation.Controllers
         public IActionResult DeleteService(int id)
         {
             var values = _serviceService.GetById(id);
+            if (values == null)
+            {
+                return NotFound();
+            }
             _serviceService.Delete(values);
             return RedirectToAction("Index");
         }
@@ -54,8 +58,13 @@ namespace AgriculturePresentation.Controllers
         public IActionResult EditService(int id)
         {
             var values = _serviceService.GetById(id);
+            if (values == null)
+            {
+                return NotFound();
+            }
             return View(values);
         }
+
 
         [HttpPost]
         public IActionResult EditService(Service service)

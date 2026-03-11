@@ -38,6 +38,10 @@ namespace AgriculturePresentation.Controllers
         public IActionResult DeleteAdmin(int id)
         {
             var value = _adminService.GetById(id);
+            if (value == null)
+            {
+                return NotFound();
+            }
             _adminService.Delete(value);
             return RedirectToAction("Index");
         }
@@ -46,6 +50,10 @@ namespace AgriculturePresentation.Controllers
         public IActionResult EditAdmin(int id)
         {
             var value = _adminService.GetById(id);
+            if (value == null)
+            {
+                return NotFound();
+            }
             return View(value);
         }
 

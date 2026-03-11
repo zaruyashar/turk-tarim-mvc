@@ -18,11 +18,19 @@ namespace BusinessLayer.Concrete
 
         public void Delete(Address t)
         {
-            throw new NotImplementedException();
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
+            _addressDal.Delete(t);
         }
 
         public Address GetById(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentException("ID değeri 0 veya negatif olamaz.", nameof(id));
+            }
             return _addressDal.GetById(id);
         }
 
@@ -33,11 +41,19 @@ namespace BusinessLayer.Concrete
 
         public void Insert(Address t)
         {
-            throw new NotImplementedException();
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
+            _addressDal.Insert(t);
         }
 
         public void Update(Address t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _addressDal.Update(t);
         }
     }

@@ -84,6 +84,7 @@ namespace AgriculturePresentation
 
 
             app.UseHttpsRedirection();
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404");
             app.UseRouting();
 
             app.UseRateLimiter();

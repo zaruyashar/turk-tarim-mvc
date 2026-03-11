@@ -18,11 +18,19 @@ namespace BusinessLayer.Concrete
 
         public void Delete(SocialMedia t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _socialMediaDal.Delete(t);
         }
 
         public SocialMedia GetById(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentException("ID değeri 0 veya negatif olamaz.", nameof(id));
+            }
             return _socialMediaDal.GetById(id);
         }
 
@@ -33,11 +41,19 @@ namespace BusinessLayer.Concrete
 
         public void Insert(SocialMedia t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _socialMediaDal.Insert(t);
         }
 
         public void Update(SocialMedia t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _socialMediaDal.Update(t);
         }
     }

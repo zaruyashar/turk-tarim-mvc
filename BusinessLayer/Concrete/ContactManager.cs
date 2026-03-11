@@ -18,11 +18,19 @@ namespace BusinessLayer.Concrete
 
         public void Delete(Contact t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _contactDal.Delete(t);
         }
 
         public Contact GetById(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentException("ID değeri 0 veya negatif olamaz.", nameof(id));
+            }
             return _contactDal.GetById(id);
         }
 
@@ -33,11 +41,19 @@ namespace BusinessLayer.Concrete
 
         public void Insert(Contact t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _contactDal.Insert(t);
         }
 
         public void Update(Contact t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException(nameof(t));
+            }
             _contactDal.Update(t);
         }
     }

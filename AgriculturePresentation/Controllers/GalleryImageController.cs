@@ -52,16 +52,27 @@ namespace AgriculturePresentation.Controllers
         public IActionResult DeleteGalleryImage(int id)
         {
             var value = _galleryImageService.GetById(id);
+            if (value == null)
+            {
+                return NotFound();
+            }
             _galleryImageService.Delete(value);
             return RedirectToAction("Index");
         }
+
 
         [HttpGet]
         public IActionResult EditGalleryImage(int id)
         {
             var value = _galleryImageService.GetById(id);
+            if (value == null)
+            {
+                return NotFound();
+            }
             return View(value);
         }
+
+
         [HttpPost]
         public IActionResult EditGalleryImage(GalleryImage galleryImage)
         {
