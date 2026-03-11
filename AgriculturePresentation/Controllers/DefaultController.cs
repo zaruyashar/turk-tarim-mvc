@@ -5,6 +5,7 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 
 namespace AgriculturePresentation.Controllers
@@ -31,6 +32,7 @@ namespace AgriculturePresentation.Controllers
         }
 
         [HttpPost]
+        [EnableRateLimiting("ContactFormLimit")]
         public IActionResult SendMessage(ContactAddViewModel model)
         {
             Contact contact = new Contact()
@@ -42,7 +44,6 @@ namespace AgriculturePresentation.Controllers
             };
 
             _contactService.Insert(contact);
-
             return RedirectToAction("Index");
         }
 

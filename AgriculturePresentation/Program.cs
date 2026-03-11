@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 
 namespace AgriculturePresentation
 {
@@ -27,10 +29,30 @@ namespace AgriculturePresentation
             builder.Services.ContainerDependencies();
 
 
+
             builder.Services.AddControllersWithViews(options =>
             {
                 options.Filters.Add(new Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute());
             });
+
+            builder.Services.AddRateLimiter(options =>
+            {
+                options.AddFixedWindowLimiter("ContactFormLimit", permitLimitOptions =>
+                {
+                    permitLimitOptions.PermitLimit = 3;
+                    permitLimitOptions.Window = TimeSpan.FromMinutes(1);
+                    permitLimitOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                    permitLimitOptions.QueueLimit = 0;
+                });
+
+                options.OnRejected = async (context, token) =>
+                {
+                    context.HttpContext.Response.StatusCode = 429;
+                    context.HttpContext.Response.ContentType = "text/plain; charset=utf-8";
+                    await context.HttpContext.Response.WriteAsync("Çok fazla istek gönderdiniz. Lütfen 1 dakika bekleyip tekrar deneyin.", token);
+                };
+            });
+
 
 
             builder.Services.AddMvc(config =>
@@ -48,8 +70,8 @@ namespace AgriculturePresentation
                     x.LoginPath = "/Login/Index/";
                 });
 
-           
-            
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -60,12 +82,18 @@ namespace AgriculturePresentation
                 app.UseHsts();
             }
 
+
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseAuthentication();
+            app.UseRateLimiter();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.MapStaticAssets();
             app.MapControllerRoute(
