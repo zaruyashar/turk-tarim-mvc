@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Abstract;
+﻿using AgriculturePresentation.Models;
+using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
@@ -22,18 +23,29 @@ namespace AgriculturePresentation.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public PartialViewResult SendMessage()
         {
             return PartialView();
         }
+
         [HttpPost]
-        public IActionResult SendMessage(Contact contact)
+        public IActionResult SendMessage(ContactAddViewModel model)
         {
-            contact.Date = DateTime.Parse(DateTime.Now.ToShortDateString());
+            Contact contact = new Contact()
+            {
+                Name = model.Name,
+                Mail = model.Mail,
+                Message = model.Message,
+                Date = DateTime.Now
+            };
+
             _contactService.Insert(contact);
-            return RedirectToAction("Index", "Default");
+
+            return RedirectToAction("Index");
         }
+
         public PartialViewResult ScriptPartial()
         {
             return PartialView();
