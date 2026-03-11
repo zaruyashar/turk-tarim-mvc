@@ -4,31 +4,29 @@
 <div class="sevices-w3layouts" id="services">
     <div class="container">
         <h3 class="tittle">Hizmetlerimiz</h3>
-
-        <p class="heading-btm-w3ls">Suspendisse fringilla pellentesque risus sit amet bibendum.</p>
+        <p class="heading-btm-w3ls">Çiftliğimizde sunduğumuz profesyonel tarım çözümleri ve modern üretim teknikleri.</p>
 
         <div class="services-main">
-
-            @foreach (var item in Model)
+            @if (Model != null && Model.Any())
             {
+                foreach (var item in Model)
+                {
+                    <div class="@item.Class1" data-wow-delay=".5s">
+                        <h5>@item.Title</h5>
+                        <p>@(item.Description != null && item.Description.Length > 120 ? item.Description.Substring(0, 120) + "..." : item.Description)</p>
 
-                <div class="@item.Class1" data-wow-delay=".5s">
-
-                    <h5>@item.Title</h5>
-                    <p>@item.Description</p>
-
-                    <div class="@item.Class2">
-                        <i class="@item.Image" aria-hidden="true"></i>
-                        <p>@item.Title</p>
+                        <div class="@item.Class2">
+                            <i class="@item.Image" aria-hidden="true"></i>
+                            <p>@item.Title</p>
+                        </div>
                     </div>
-
-                </div>
-
+                }
+            }
+            else
+            {
+                <div class="alert alert-light text-center">Hizmet bilgileri şu an yüklenemiyor.</div>
             }
         </div>
-
         <div class="clearfix"> </div>
-
     </div>
-
 </div>

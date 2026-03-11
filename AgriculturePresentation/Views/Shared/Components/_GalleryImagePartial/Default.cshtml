@@ -6,20 +6,29 @@
         <h3 class="tittle">Fotoğraf Galerisi</h3>
         <p class="heading-btm-w3ls">Organik ürünlerimiz ve bahçelerimizden görseller</p>
         <div class="agile_gallery_grids w3-agile">
-            <ul class="clearfix demo">
-                @foreach (var item in Model)
-                {
-                    <li>
-                        <div class="gallery-grid1">
-                            <img src="@item.GalleryImageUrl" alt=" " class="img-responsive" />
-                            <div class="p-mask">
-                                <h4><span>@item.Title</span></h4>
-                                <p>@item.Description</p>
+            @if (Model != null && Model.Any())
+            {
+                <ul class="clearfix demo">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <div class="gallery-grid1">
+                                <img src="@item.GalleryImageUrl" alt=" " class="img-responsive" />
+                                <div class="p-mask">
+                                    <h4><span>@item.Title</span></h4>
+                                    <p>@item.Description</p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                }
-            </ul>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <div class="alert alert-warning text-center">
+                    Henüz galeriye bir görsel eklenmemiştir.
+                </div>
+            }
         </div>
     </div>
 </div>

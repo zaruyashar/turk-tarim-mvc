@@ -6,35 +6,45 @@
         <div class="card">
             <div class="card-body">
                 <p class="card-title">Son Mesajlar</p>
-                <div class="table-responsive">
-                    <table id="recent-purchases-listing" class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Ad Soyadı</th>
-                                <th>E-posta</th>
-                                <th>Tarih</th>
-                                <th>Mesajı Gör</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
+
+                @if (Model != null && Model.Any())
+                {
+                    <div class="table-responsive">
+                        <table id="recent-purchases-listing" class="table">
+                            <thead>
                                 <tr>
-                                    <td>@item.ContactID</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Mail</td>
-                                    <td>@item.Date</td>
-                                    <td>
-                                        <a href="/Contact/MessageDetails/@item.ContactID" class="btn btn-primary" style="font-weight: bold !important; color: white !important;">
-                                            Mesajı Gör
-                                        </a>
-                                    </td>
+                                    <th>#</th>
+                                    <th>Ad Soyadı</th>
+                                    <th>E-posta</th>
+                                    <th>Tarih</th>
+                                    <th>Mesajı Gör</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.ContactID</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Mail</td>
+                                        <td>@item.Date.ToString("dd.MM.yyyy")</td>
+                                        <td>
+                                            <a asp-controller="Contact" asp-action="MessageDetails" asp-route-id="@item.ContactID" class="btn btn-primary" style="font-weight: bold !important; color: white !important;">
+                                                Mesajı Gör
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        Henüz gelen bir mesaj bulunmamaktadır.
+                    </div>
+                }
             </div>
         </div>
     </div>

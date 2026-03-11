@@ -29,15 +29,14 @@
                                 <td>@item.Description2</td>
                                 <td>@item.Description3</td>
                                 <td>@item.Description4</td>
-                                <td><a href="/Address/EditAddress/@item.AddressID" class="btn btn-outline-success">Güncelle</a></td>
+                                <td><a asp-controller="Address" asp-action="EditAddress" asp-route-id="@item.AddressID" class="btn btn-outline-success">Güncelle</a></td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
             <br />
-            <a href="/Team/AddTeam" class="btn btn-outline-info">Yeni Personel Girişi</a>
+            <a asp-controller="Team" asp-action="AddTeam" class="btn btn-outline-info">Yeni Personel Girişi</a>
         </div>
     </div>
 </div>
-

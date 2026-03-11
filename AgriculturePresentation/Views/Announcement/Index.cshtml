@@ -34,15 +34,15 @@
                                     <td>
                                         @if (item.Status)
                                         {
-                                            <a href="/Announcement/ChangeStatusToFalse/@item.AnnouncementID" class="btn btn-outline-warning">Pasif Yap</a>
+                                            <a asp-controller="Announcement" asp-action="ChangeStatusToFalse" asp-route-id="@item.AnnouncementID" class="btn btn-outline-warning">Pasif Yap</a>
                                         }
                                         else
                                         {
-                                            <a href="/Announcement/ChangeStatusToTrue/@item.AnnouncementID" class="btn btn-outline-info">Aktif Yap</a>
+                                            <a asp-controller="Announcement" asp-action="ChangeStatusToTrue" asp-route-id="@item.AnnouncementID" class="btn btn-outline-info">Aktif Yap</a>
                                         }
                                     </td>
-                                    <td><a href="/Announcement/DeleteAnnouncement/@item.AnnouncementID" class="btn btn-outline-danger" onclick="return confirm('Bu duyuruyu silmek istediğinize emin misiniz?');">Sil</a></td>
-                                    <td><a href="/Announcement/EditAnnouncement/@item.AnnouncementID" class="btn btn-outline-success">Güncelle</a></td>
+                                    <td><a asp-controller="Announcement" asp-action="DeleteAnnouncement" asp-route-id="@item.AnnouncementID" class="btn btn-outline-danger" onclick="return confirm('Bu duyuruyu silmek istediğinize emin misiniz?');">Sil</a></td>
+                                    <td><a asp-controller="Announcement" asp-action="EditAnnouncement" asp-route-id="@item.AnnouncementID" class="btn btn-outline-success">Güncelle</a></td>
                                 </tr>
                             }
                         </tbody>
@@ -53,7 +53,7 @@
                     <div class="alert alert-warning">Sistemde henüz kayıtlı duyuru bulunmamaktadır.</div>
                 }
                 <br />
-                <a href="/Announcement/AddAnnouncement/" class="btn btn-outline-info">Yeni Duyuru Girişi</a>
+                <a asp-controller="Announcement" asp-action="AddAnnouncement" class="btn btn-outline-info">Yeni Duyuru Girişi</a>
             </div>
         </div>
     </div>

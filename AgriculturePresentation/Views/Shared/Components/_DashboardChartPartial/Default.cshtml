@@ -2,104 +2,66 @@
     <div class="col-md-7 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <!DOCTYPE html>
-                <html>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-                <body>
-                    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
-
-                    <script>
-                        var xyValues = [
-                            { x: 50, y: 7 },
-                            { x: 85, y: 12 },
-                            { x: 70, y: 8 },
-                            { x: 80, y: 9 },
-                            { x: 90, y: 9 },
-                            { x: 100, y: 9 },
-                            { x: 110, y: 10 },
-                            { x: 120, y: 11 },
-                            { x: 130, y: 14 },
-                            { x: 140, y: 14 },
-                            { x: 150, y: 15 }
-                        ];
-
-                        new Chart("myChart", {
-                            type: "scatter",
-                            data: {
-                                datasets: [{
-                                    pointRadius: 4,
-                                    pointBackgroundColor: "rgb(0,0,255)",
-                                    data: xyValues
-                                }]
-                            },
-                            options: {
-                                legend: { display: false },
-                                scales: {
-                                    xAxes: [{ ticks: { min: 40, max: 160 } }],
-                                    yAxes: [{ ticks: { min: 6, max: 16 } }],
-                                }
-                            }
-                        });
-                    </script>
-
-                </body>
-            </html>
+                <h4 class="card-title">Verim İstatistikleri</h4>
+                <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Üretim Dağılımı</h4>
+                <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+            </div>
         </div>
     </div>
 </div>
-<div class="col-md-5 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <!DOCTYPE html>
-            <html>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
-            <body>
 
-                <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                <script>
-                    const xValues = ["Buğday", "Arpa", "Mısır", "Mercimek", "Pirinç"];
-                    const yValues = [
-                        @(ViewBag.v1 ?? 0),
-                        @(ViewBag.v2 ?? 0),
-                        44, 24, 15
-                        ];
-                    const barColors = [
-                      "#b91d47",
-                      "#00aba9",
-                      "#2b5797",
-                      "#e8c3b9",
-                      "#1e7145"
-                    ];
+<script>
+    // Scatter Chart - v4 uyumlu hale getirildi
+    new Chart("myChart", {
+        type: "scatter",
+        data: {
+            datasets: [{
+                pointRadius: 4,
+                pointBackgroundColor: "rgb(0,0,255)",
+                data: [
+                    { x: 50, y: 7 }, { x: 85, y: 12 }, { x: 70, y: 8 }, { x: 80, y: 9 },
+                    { x: 90, y: 9 }, { x: 100, y: 9 }, { x: 110, y: 10 }, { x: 120, y: 11 },
+                    { x: 130, y: 14 }, { x: 140, y: 14 }, { x: 150, y: 15 }
+                ]
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { min: 40, max: 160 },
+                y: { min: 6, max: 16 }
+            }
+        }
+    });
 
-                    const ctx = document.getElementById('myChart1');
-
-                    new Chart(ctx, {
-                      type: "doughnut",
-                      data: {
-                        labels: xValues,
-                        datasets: [{
-                          backgroundColor: barColors,
-                          data: yValues
-                        }]
-                      },
-                      options: {
-                        plugins: {
-                          legend: {display:true},
-                          title: {
-                            display: true,
-                            text: "2026 Bakliyat Üretimi",
-                            font: {size:16}
-                          }
-                        }
-                      }
-                    });
-                </script>
-
-            </body>
-        </html>
-
-    </div>
-</div>
-</div>
-</div>
+    // Doughnut Chart - Verilerin aynen korundu
+    new Chart(document.getElementById('myChart1'), {
+        type: "doughnut",
+        data: {
+            labels: ["Buğday", "Arpa", "Mısır", "Mercimek", "Pirinç"],
+            datasets: [{
+                backgroundColor: ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"],
+                data: [@(ViewBag.v1 ?? 0), @(ViewBag.v2 ?? 0), 44, 24, 15] // [cite: 74-75]
+            }]
+        },
+        options: {
+            plugins: {
+                legend: { display: true },
+                title: {
+                    display: true,
+                    text: "2026 Bakliyat Üretimi", // [cite: 80]
+                    font: { size: 16 }
+                }
+            }
+        }
+    });
+</script>

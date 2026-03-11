@@ -26,14 +26,14 @@
                             <tr>
                                 <td>@item.AdminID</td>
                                 <td>@item.Username</td>
-                                <td><a href="/Admin/DeleteAdmin/@item.AdminID" class="btn btn-outline-danger">Sil</a></td>
-                                <td><a href="/Admin/EditAdmin/@item.AdminID" class="btn btn-outline-success">Güncelle</a></td>
+                                <td><a asp-controller="Admin" asp-action="DeleteAdmin" asp-route-id="@item.AdminID" class="btn btn-outline-danger">Sil</a></td>
+                                <td><a asp-controller="Admin" asp-action="EditAdmin" asp-route-id="@item.AdminID" class="btn btn-outline-success">Güncelle</a></td>
                             </tr>
                         }
                     </tbody>
                 </table>
                 <br />
-                <a href="/Admin/AddAdmin/" class="btn btn-outline-info">Yeni Admin Girişi</a>
+                <a asp-controller="Admin" asp-action="AddAdmin" class="btn btn-outline-info">Yeni Admin Girişi</a>
             </div>
         </div>
     </div>

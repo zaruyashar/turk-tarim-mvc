@@ -28,8 +28,8 @@
                                         <img src="@(string.IsNullOrEmpty(item.GalleryImageUrl) ? "/images/default-avatar.png" : item.GalleryImageUrl)" alt="image" />
                                     </td>
                                     <td>@(string.IsNullOrEmpty(item.Title) ? "Belirtilmemiş" : item.Title)</td>
-                                    <td><a href="/GalleryImage/DeleteGalleryImage/@item.GalleryImageID" class="btn btn-outline-danger" onclick="return confirm('Bu görseli silmek istediğinize emin misiniz?');">Sil</a></td>
-                                    <td><a href="/GalleryImage/EditGalleryImage/@item.GalleryImageID" class="btn btn-outline-success">Güncelle</a></td>
+                                    <td><a asp-controller="GalleryImage" asp-action="DeleteGalleryImage" asp-route-id="@item.GalleryImageID" class="btn btn-outline-danger" onclick="return confirm('Bu görseli silmek istediğinize emin misiniz?');">Sil</a></td>
+                                    <td><a asp-controller="GalleryImage" asp-action="EditGalleryImage" asp-route-id="@item.GalleryImageID" class="btn btn-outline-success">Güncelle</a></td>
                                 </tr>
                             }
                         </tbody>
@@ -40,7 +40,7 @@
                     <div class="alert alert-warning">Sistemde henüz kayıtlı görsel bulunmamaktadır.</div>
                 }
                 <br />
-                <a href="/GalleryImage/AddGalleryImage/" class="btn btn-outline-info">Yeni Görsel Girişi</a>
+                <a asp-controller="GalleryImage" asp-action="AddGalleryImage" class="btn btn-outline-info">Yeni Görsel Girişi</a>
             </div>
         </div>
     </div>

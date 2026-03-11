@@ -28,8 +28,8 @@
                                         <img src="@(string.IsNullOrEmpty(item.Image) ? "/images/default-avatar.png" : item.Image)" alt="image" />
                                     </td>
                                     <td>@(string.IsNullOrEmpty(item.Title) ? "Belirtilmemiş" : item.Title)</td>
-                                    <td><a href="/Service/DeleteService/@item.ServiceID" class="btn btn-outline-danger" onclick="return confirm('Bu hizmeti silmek istediğinize emin misiniz?');">Sil</a></td>
-                                    <td><a href="/Service/EditService/@item.ServiceID" class="btn btn-outline-success">Güncelle</a></td>
+                                    <td><a asp-controller="Service" asp-action="DeleteService" asp-route-id="@item.ServiceID" class="btn btn-outline-danger" onclick="return confirm('Bu hizmeti silmek istediğinize emin misiniz?');">Sil</a></td>
+                                    <td><a asp-controller="Service" asp-action="EditService" asp-route-id="@item.ServiceID" class="btn btn-outline-success">Güncelle</a></td>
                                 </tr>
                             }
                         </tbody>
@@ -40,7 +40,7 @@
                     <div class="alert alert-warning">Sistemde henüz kayıtlı hizmet bulunmamaktadır.</div>
                 }
                 <br />
-                <a href="/Service/AddService/" class="btn btn-outline-info">Yeni Hizmet Girişi</a>
+                <a asp-controller="Service" asp-action="AddService" class="btn btn-outline-info">Yeni Hizmet Girişi</a>
             </div>
         </div>
     </div>
