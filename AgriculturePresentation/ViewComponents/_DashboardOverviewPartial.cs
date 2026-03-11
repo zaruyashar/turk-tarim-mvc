@@ -1,33 +1,51 @@
-﻿using DataAccessLayer.Contexts;
+﻿using BusinessLayer.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AgriculturePresentation.ViewComponents
 {
     public class _DashboardOverviewPartial : ViewComponent
     {
-        AgricultureContext c = new AgricultureContext();
+        private readonly ITeamService _teamService;
+        private readonly IServiceService _serviceService;
+        private readonly IContactService _contactService;
+        private readonly IAnnouncementService _announcementService;
+
+        public _DashboardOverviewPartial(
+            ITeamService teamService,
+            IServiceService serviceService,
+            IContactService contactService,
+            IAnnouncementService announcementService)
+        {
+            _teamService = teamService;
+            _serviceService = serviceService;
+            _contactService = contactService;
+            _announcementService = announcementService;
+        }
+
         public IViewComponentResult Invoke()
         {
-            ViewBag.teamCount = c.Teams.Count();
-            ViewBag.serviceCount = c.Services.Count();
-            ViewBag.messageCount = c.Contacts.Count();
-            ViewBag.currentMonthMessage = c.Contacts
-                                        .Where(x => x.Date.Month == DateTime.Now.Month
-                                          && x.Date.Year == DateTime.Now.Year)
-                                          .Count();
+            // Count() işlemleri
+            ViewBag.teamCount = _teamService.GetListAll().Count();
+            ViewBag.serviceCount = _serviceService.GetListAll().Count();
+            ViewBag.messageCount = _contactService.GetListAll().Count();
 
+            // Geçerli ayın mesaj sayısı
+            ViewBag.currentMonthMessage = _contactService.GetListAll()
+                .Count(x => x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year);
 
-            ViewBag.announcementTrue = c.Announcements.Where(x => x.Status == true).Count();
-            ViewBag.announcementFalse = c.Announcements.Where(x => x.Status == false).Count();
+            // Duyuru durumları
+            ViewBag.announcementTrue = _announcementService.GetListAll().Count(x => x.Status == true);
+            ViewBag.announcementFalse = _announcementService.GetListAll().Count(x => x.Status == false);
 
-            ViewBag.urunPazarlama = c.Teams.Where(x => x.Title == "Ürün Pazarlama").Select(y => y.PersonName).FirstOrDefault();
-            ViewBag.bakliyatYonetimi = c.Teams.Where(x => x.Title == "Bakliyat Yönetimi").Select(y => y.PersonName).FirstOrDefault();
-            ViewBag.ekimUzmani = c.Teams.Where(x => x.Title == "Ekim Uzmanı").Select(y => y.PersonName).FirstOrDefault();
-            ViewBag.sutUreticisi = c.Teams.Where(x => x.Title == "Süt Üreticisi").Select(y => y.PersonName).FirstOrDefault();
+            // Ekip üyeleri (Veritabanındaki unvanların birebir eşleştiğinden emin ol)
+            var teams = _teamService.GetListAll();
+            ViewBag.urunPazarlama = teams.FirstOrDefault(x => x.Title == "Ürün Pazarlama")?.PersonName;
+            ViewBag.bakliyatYonetimi = teams.FirstOrDefault(x => x.Title == "Bakliyat Yönetimi")?.PersonName;
+            ViewBag.ekimUzmani = teams.FirstOrDefault(x => x.Title == "Ekim Uzmanı")?.PersonName;
+            ViewBag.sutUreticisi = teams.FirstOrDefault(x => x.Title == "Süt Üreticisi")?.PersonName;
+
             return View();
         }
     }
