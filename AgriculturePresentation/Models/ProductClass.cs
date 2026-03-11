@@ -2,7 +2,7 @@
 {
     public class ProductClass
     {
-        public int productvalue { get; set; }
-        public string? productname { get; set; }
+        public int ProductValue { get; set; }
+        public string? ProductName { get; set; }
     }
 }

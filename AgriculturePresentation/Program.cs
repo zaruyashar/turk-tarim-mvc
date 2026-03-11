@@ -19,8 +19,6 @@ namespace AgriculturePresentation
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Configs moved to Business Layer > Container.
-
             builder.Services.AddDbContext<AgricultureContext>();
 
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
@@ -28,11 +26,26 @@ namespace AgriculturePresentation
 
             builder.Services.ContainerDependencies();
 
-
-
             builder.Services.AddControllersWithViews(options =>
             {
                 options.Filters.Add(new Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute());
+
+                var policy = new AuthorizationPolicyBuilder()
+                                .RequireAuthenticatedUser()
+                                .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Login/Index/";
+                options.LogoutPath = "/Login/Logout/";
+                options.Cookie.Name = ".Agriculture.Session";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(45);
+                options.SlidingExpiration = true;
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SameSite = SameSiteMode.Strict;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             });
 
             builder.Services.AddRateLimiter(options =>
@@ -53,46 +66,16 @@ namespace AgriculturePresentation
                 };
             });
 
-
-
-            builder.Services.AddMvc(config =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                                .RequireAuthenticatedUser()
-                                .Build();
-                config.Filters.Add(new AuthorizeFilter(policy));
-            });
-            builder.Services.AddMvc();
-
-
-            builder.Services.AddAuthentication(
-                    CookieAuthenticationDefaults.AuthenticationScheme)
-                    .AddCookie(x =>
-            {
-                x.LoginPath = "/Login/Index/";
-                x.LogoutPath = "/Login/Logout/";
-                x.Cookie.Name = ".Agriculture.Session";
-
-                x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-                x.SlidingExpiration = true;
-
-                x.Cookie.HttpOnly = true;
-                x.Cookie.SameSite = SameSiteMode.Strict;
-                x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            });
-
-
-
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404");
             app.UseRouting();
@@ -102,11 +85,6 @@ namespace AgriculturePresentation
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")

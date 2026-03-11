@@ -16,32 +16,32 @@ namespace AgriculturePresentation.Controllers
 
             productClasses.Add(new ProductClass
             {
-                productname = "Buğday",
-                productvalue = 850
+                ProductName = "Buğday",
+                ProductValue = 850
             });
 
             productClasses.Add(new ProductClass
             {
-                productname = "Mercimek",
-                productvalue = 480
+                ProductName = "Mercimek",
+                ProductValue = 480
             });
 
             productClasses.Add(new ProductClass
             {
-                productname = "Arpa",
-                productvalue = 250
+                ProductName = "Arpa",
+                ProductValue = 250
             });
 
             productClasses.Add(new ProductClass
             {
-                productname = "Pirinç",
-                productvalue = 120
+                ProductName = "Pirinç",
+                ProductValue = 120
             });
 
             productClasses.Add(new ProductClass
             {
-                productname = "Domates",
-                productvalue = 960
+                ProductName = "Domates",
+                ProductValue = 960
             });
 
             return Json(new { jsonlist = productClasses });

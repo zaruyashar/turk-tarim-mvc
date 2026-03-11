@@ -29,7 +29,7 @@ namespace AgriculturePresentation.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync
-                    (logInViewModel.username, logInViewModel.password, false, true);
+                    (logInViewModel.UserName, logInViewModel.Password, false, true);
 
                 if (result.Succeeded)
                 {
@@ -56,12 +56,12 @@ namespace AgriculturePresentation.Controllers
             IdentityUser identityUser = new IdentityUser()
             {
                 Id = "1",
-                UserName = registerViewModel.userName,
-                Email = registerViewModel.mail
+                UserName = registerViewModel.UserName,
+                Email = registerViewModel.Mail
             };
-            if (registerViewModel.password == registerViewModel.passwordConfirm)
+            if (registerViewModel.Password == registerViewModel.PasswordConfirm)
             {
-                var result = await _userManager.CreateAsync(identityUser, registerViewModel.password);
+                var result = await _userManager.CreateAsync(identityUser, registerViewModel.Password);
                 
                 if (result.Succeeded)
                 {
