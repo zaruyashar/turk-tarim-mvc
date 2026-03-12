@@ -29,9 +29,9 @@
             <li class="nav-item dropdown me-1">
                 <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
                     <i class="mdi mdi-message-text mx-0"></i>
-                    <span class="count"></span>
+                    <span class="count" style="display: none;"></span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown" style="min-width: 350px !important;">
                     <p class="mb-0 font-weight-normal float-left dropdown-header">Son Mesajlar</p>
 
                     @await Component.InvokeAsync("_NavbarMessageComponent")

@@ -27,7 +27,13 @@
                             {
                                 <tr>
                                     <td>@item.ContactID</td>
-                                    <td>@(string.IsNullOrEmpty(item.Name) ? "Belirtilmemiş" : item.Name)</td>
+                                    <td>
+                                        @(string.IsNullOrEmpty(item.Name) ? "Belirtilmemiş" : item.Name)
+                                        @if (!item.IsRead)
+                                        {
+                                            <span class="badge badge-danger" style="margin-left: 8px; font-size: 0.75rem;">Yeni</span>
+                                        }
+                                    </td>
                                     <td>@(string.IsNullOrEmpty(item.Mail) ? "Belirtilmemiş" : item.Mail)</td>
                                     <td>@item.Date.ToString("dd.MM.yyyy")</td>
                                     <td><a asp-controller="Contact" asp-action="DeleteMessage" asp-route-id="@item.ContactID" class="btn btn-outline-danger" onclick="return confirm('Bu mesajı silmek istediğinize emin misiniz?');">Sil</a></td>

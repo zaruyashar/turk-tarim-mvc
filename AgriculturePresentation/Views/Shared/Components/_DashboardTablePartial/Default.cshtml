@@ -25,7 +25,13 @@
                                 {
                                     <tr>
                                         <td>@item.ContactID</td>
-                                        <td>@item.Name</td>
+                                        <td>
+                                            @item.Name
+                                            @if (!item.IsRead)
+                                            {
+                                                <span class="badge badge-danger" style="margin-left: 8px; font-size: 0.75rem;">Yeni</span>
+                                            }
+                                        </td>
                                         <td>@item.Mail</td>
                                         <td>@item.Date.ToString("dd.MM.yyyy")</td>
                                         <td>

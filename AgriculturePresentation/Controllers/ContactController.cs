@@ -41,6 +41,13 @@ namespace AgriculturePresentation.Controllers
             {
                 return NotFound();
             }
+
+            if (!value.IsRead)
+            {
+                value.IsRead = true;
+                _contactService.Update(value);
+            }
+
             return View(value);
         }
     }
