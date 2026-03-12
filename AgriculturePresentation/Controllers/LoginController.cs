@@ -55,14 +55,14 @@ namespace AgriculturePresentation.Controllers
         {
             IdentityUser identityUser = new IdentityUser()
             {
-                Id = "1",
                 UserName = registerViewModel.UserName,
                 Email = registerViewModel.Mail
             };
+
             if (registerViewModel.Password == registerViewModel.PasswordConfirm)
             {
                 var result = await _userManager.CreateAsync(identityUser, registerViewModel.Password);
-                
+
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index");

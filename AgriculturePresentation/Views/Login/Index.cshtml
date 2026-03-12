@@ -3,18 +3,50 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <title>ADMİN GİRİŞ FORMU</title>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" href="~/images/sprout.png?v=2" />
     <link rel="stylesheet" href="~/snow-login-form-starter/css/style.css" type="text/css" media="all" />
+    <style>
+        .w3l-login {
+            background-size: cover !important;
+            background-attachment: fixed !important;
+            background-position: center !important;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .brand-logo {
+            font-size: 30px !important;
+            margin-bottom: 20px !important;
+        }
+
+        .new-signup {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .signup-text {
+            font-size: 15px;
+        }
+
+        .sign-link {
+            color: #00d2ff !important;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+            .sign-link:hover {
+                transform: scale(1.1);
+                text-decoration: underline;
+            }
+    </style>
 </head>
 
 <body>
@@ -22,11 +54,11 @@
         <div class="overlay">
             <div class="wrapper">
                 <div class="logo">
-                    <a class="brand-logo" href="~/snow-login-form-starter/index.html">Admin</a>
+                    <a class="brand-logo" href="#">TÜRK TARIM</a>
                 </div>
                 <div class="form-section">
-                    <h3>Giriş Yapın</h3>
-                    <h6>Hizmetlerimize erişmek için giriş yapın.</h6>
+                    <h3>Hoş Geldiniz</h3>
+                    <h6>Devam etmek için giriş yapın.</h6>
                     <form method="post" class="signin-form">
                         <div class="form-input">
                             <input type="text" asp-for="UserName" placeholder="Kullanıcı adınız" required="" autofocus>
@@ -34,12 +66,11 @@
                         <div class="form-input">
                             <input type="password" asp-for="Password" placeholder="Şifreniz" required="">
                         </div>
-                        <label class="check-remaind">
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            <p class="remember">Beni hatırla</p>
-                        </label>
                         <button type="submit" class="btn btn-primary theme-button mt-4">Giriş Yap</button>
+
+                        <div class="new-signup">
+                            <p class="signup-text">Henüz bir hesabınız yok mu? <a href="/Login/SignUp/" class="sign-link">Kaydolun!</a></p>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -68,5 +99,4 @@
         </script>
     }
 </body>
-
 </html>

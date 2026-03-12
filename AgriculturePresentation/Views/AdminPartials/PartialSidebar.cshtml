@@ -3,7 +3,7 @@
         <li class="nav-item @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Dashboard" ? "active" : "")">
             <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
                 <i class="mdi mdi-home menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title">Ana Sayfa</span>
             </a>
         </li>
 
@@ -52,7 +52,7 @@
         <li class="nav-item @(ViewContext.RouteData.Values["Controller"]?.ToString() == "GalleryImage" ? "active" : "")">
             <a class="nav-link" asp-controller="GalleryImage" asp-action="Index">
                 <i class="mdi mdi-image-album menu-icon"></i>
-                <span class="menu-title">Görseller</span>
+                <span class="menu-title">Galeri</span>
             </a>
         </li>
 
