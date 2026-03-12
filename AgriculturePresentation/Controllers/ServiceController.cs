@@ -60,7 +60,7 @@ namespace AgriculturePresentation.Controllers
             var values = _serviceService.GetById(id);
             if (values == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
             return View(values);
         }
