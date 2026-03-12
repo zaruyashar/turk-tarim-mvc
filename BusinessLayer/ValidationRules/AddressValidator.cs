@@ -15,10 +15,10 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.Description3).NotEmpty().WithMessage("Açıklama 3 boş bırakılamaz.");
             RuleFor(x => x.Description4).NotEmpty().WithMessage("Açıklama 4 boş bırakılamaz.");
             RuleFor(x => x.MapInfo).NotEmpty().WithMessage("Harita bilgisi boş bırakılamaz.");
-            RuleFor(x => x.Description1).MaximumLength(25).WithMessage("Daha kısa bir açıklama girin.");
-            RuleFor(x => x.Description2).MaximumLength(25).WithMessage("Daha kısa bir açıklama girin.");
-            RuleFor(x => x.Description3).MaximumLength(25).WithMessage("Daha kısa bir açıklama girin.");
-            RuleFor(x => x.Description4).MaximumLength(25).WithMessage("Daha kısa bir açıklama girin.");
+            RuleFor(x => x.Description1).MaximumLength(100).WithMessage("Daha kısa bir açıklama girin.");
+            RuleFor(x => x.Description2).MaximumLength(100).WithMessage("Daha kısa bir açıklama girin.");
+            RuleFor(x => x.Description3).MaximumLength(100).WithMessage("Daha kısa bir açıklama girin.");
+            RuleFor(x => x.Description4).MaximumLength(100).WithMessage("Daha kısa bir açıklama girin.");
         }
     }
 }
