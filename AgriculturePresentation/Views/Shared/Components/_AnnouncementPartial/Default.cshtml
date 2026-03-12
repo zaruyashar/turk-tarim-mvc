@@ -1,32 +1,33 @@
 ﻿@using EntityLayer.Concrete
 @model List<Announcement>
 
-<div class="blog" id="blog">
+<div class="announcements-section" id="announcements" style="padding: 40px 0; background-color: #f7faff;">
     <div class="container">
-        <h3 class="tittle">Son Duyurular</h3>
+        <h3 class="tittle">SON DUYURULAR</h3>
         <p class="heading-btm-w3ls">Çiftliklerimizden Güncel Haberler</p>
 
         @if (Model != null && Model.Any())
         {
             foreach (var item in Model)
             {
-                <div class="blog-grid-w3-agileits" style="margin-bottom: 4em;">
-                    <div class="col-md-7 blog-img1-agileits-w3layouts">
+                <div class="row" style="margin-bottom: 30px !important; display: block; overflow: hidden; clear: both;">
+                    <div class="col-md-7">
                         <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/web/images/banner1.jpg" : item.ImageUrl)"
-                             class="img-responsive" style="width:100%; height:350px; object-fit:cover;" />
+                             class="img-responsive" style="width:100%; height:300px; object-fit:cover; border-radius: 4px;" />
                     </div>
-                    <div class="col-md-5 blog-info-w3layouts">
-                        <h6><a href="#" data-toggle="modal" data-target="#myModal-@item.AnnouncementID">@item.Title</a></h6>
-                        <div class="inner-info">
-                            <a href="#" class="blog-text-w3ls bar">Duyuru</a>
-                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                            <p class="para-w3-agileits">
-                                @(item.Description?.Length > 150 ? item.Description.Substring(0, 150) + "..." : item.Description)
-                            </p>
+                    <div class="col-md-5">
+                        <div class="blog-info-w3layouts" style="padding-top: 5px;">
+                            <h6><a href="#" data-target="#myModal-@item.AnnouncementID" data-toggle="modal">@item.Title</a></h6>
+                            <div class="inner-info">
+                                <a href="#" class="blog-text-w3ls bar">Duyuru</a>
+                                <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                                <p class="para-w3-agileits" style="margin-top: 10px;">
+                                    @(item.Description?.Length > 150 ? item.Description.Substring(0, 150) + "..." : item.Description)
+                                </p>
+                            </div>
+                            <a href="#" class="blog-more-agile" data-target="#myModal-@item.AnnouncementID" data-toggle="modal">DEVAMINI OKU</a>
                         </div>
-                        <a href="#" class="blog-more-agile" data-toggle="modal" data-target="#myModal-@item.AnnouncementID">Devamını Oku</a>
                     </div>
-                    <div class="clearfix"></div>
                 </div>
 
                 <div class="modal fade" id="myModal-@item.AnnouncementID" tabindex="-1" role="dialog">
@@ -35,8 +36,8 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4>@item.Title</h4>
-                                <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/web/images/banner1.jpg" : item.ImageUrl)" class="img-responsive" style="width:100%">
-                                <p style="margin-top:20px;">@item.Description</p>
+                                <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/web/images/banner1.jpg" : item.ImageUrl)" class="img-responsive" style="width:100%; border-radius: 4px;">
+                                <p style="margin-top:20px; line-height: 1.6;">@item.Description</p>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,45 @@
 ﻿@using EntityLayer.Concrete
 @model List<About>
 
+<style>
+    .partner-img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #f0f0f0;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease;
+    }
+
+        .partner-img:hover {
+            transform: scale(1.1);
+        }
+
+    .clients ul {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
+        list-style: none;
+        margin-top: 20px;
+    }
+
+        .clients ul li {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+        }
+
+            .clients ul li span {
+                display: block;
+                font-weight: 600;
+                color: #333;
+                margin-top: 5px;
+            }
+</style>
+
 <div class="about" id="about">
     <div class="container">
         <h3 class="tittle">Hakkımızda</h3>
@@ -9,27 +48,39 @@
             <ul class="resp-tabs-list">
                 <li>Tarihçe</li>
                 <li>Hakkımızda</li>
-                <li>Müşteriler</li>
+                <li>Ortaklar</li>
             </ul>
-            @foreach (var item in Model)
+            @if (Model != null && Model.Any())
             {
-                <div class="resp-tabs-container">
-                    <div class="tab1">
-                        <p class="para-w3-agileits">@item.AboutHistory</p>
-                    </div>
-                    <div class="tab2">
-                        <p class="para-w3-agileits">@item.AboutUs</p>
-                    </div>
-                    <div class="tab3">
-                        <div class="clients">
-                            <ul>
-                                <li><img src="~/web/images/c1.png" alt="clients" class="img-responsive" /><span>Ahmet Yılmaz</span></li>
-                                <li><img src="~/web/images/c2.png" alt="clients" class="img-responsive" /><span>Ayşe Demir</span></li>
-                                <li><img src="~/web/images/c3.png" alt="clients" class="img-responsive" /><span>Mehmet Kaya</span></li>
-                            </ul>
+                foreach (var item in Model)
+                {
+                    <div class="resp-tabs-container">
+                        <div class="tab1">
+                            <p class="para-w3-agileits">@item.AboutHistory</p>
+                        </div>
+                        <div class="tab2">
+                            <p class="para-w3-agileits">@item.AboutUs</p>
+                        </div>
+                        <div class="tab3">
+                            <div class="clients">
+                                <ul>
+                                    <li>
+                                        <img src="~/web/images/turk-as.jpg" alt="Türk AŞ" class="img-responsive partner-img" />
+                                        <span>Türk AŞ</span>
+                                    </li>
+                                    <li>
+                                        <img src="~/web/images/cycle-re.jpg" alt="Cycle-RE" class="img-responsive partner-img" />
+                                        <span>Cycle-RE</span>
+                                    </li>
+                                    <li>
+                                        <img src="~/web/images/ata-fidan.jpg" alt="ATA Fidan" class="img-responsive partner-img" />
+                                        <span>ATA Fidan</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             }
         </div>
     </div>

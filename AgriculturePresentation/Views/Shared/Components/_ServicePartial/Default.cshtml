@@ -1,6 +1,38 @@
 ﻿@using EntityLayer.Concrete
 @model List<Service>
 
+<style>
+    .services-main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+        .services-main > div[class*="col-md"] {
+            display: flex;
+            flex-direction: column;
+            float: none !important;
+            margin-bottom: 30px;
+        }
+
+        .services-main p {
+            height: 85px !important;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            margin-bottom: 15px;
+        }
+
+        .services-main h5 {
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+</style>
+
 <div class="sevices-w3layouts" id="services">
     <div class="container">
         <h3 class="tittle">Hizmetlerimiz</h3>
@@ -13,7 +45,7 @@
                 {
                     <div class="@item.Class1" data-wow-delay=".5s">
                         <h5>@item.Title</h5>
-                        <p>@(item.Description != null && item.Description.Length > 120 ? item.Description.Substring(0, 120) + "..." : item.Description)</p>
+                        <p>@item.Description</p>
 
                         <div class="@item.Class2">
                             <i class="@item.Image" aria-hidden="true"></i>

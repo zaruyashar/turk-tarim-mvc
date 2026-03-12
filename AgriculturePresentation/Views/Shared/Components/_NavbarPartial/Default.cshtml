@@ -10,35 +10,24 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="logo">
-                        <h1><a class="navbar-brand" href="/"><span>TÜRK</span>TARIM</a></h1>
+                        <h1><a class="navbar-brand" asp-controller="Default" asp-action="Index"><span>TÜRK</span>TARIM</a></h1>
                     </div>
                 </div>
 
                 <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
                     <nav class="cl-effect-1" id="cl-effect-1">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#home" class="active" data-hover="Home">Ana Sayfa</a></li>
-                            <li><a href="#about" class="scroll" data-hover="About">Hakkımızda</a></li>
-                            <li><a href="#services" class="scroll" data-hover="Services">Hizmetlerimiz</a></li>
-                            <li><a href="#team" class="scroll" data-hover="Team">Ekibimiz</a></li>
-                            <li><a href="#gallery" class="scroll" data-hover="Projects">Galeri</a></li>
-                            <li><a href="#contact" class="scroll" data-hover="Contact">İletişim</a></li>
+                        <ul class="nav navbar-nav navbar-right" style="margin-right: -15px;">
+                            <li><a href="#about" class="scroll" data-hover="HAKKIMIZDA">Hakkımızda</a></li>
+                            <li><a href="#services" class="scroll" data-hover="HİZMETLERİMİZ">Hizmetlerimiz</a></li>
+                            <li><a href="#team" class="scroll" data-hover="EKİBİMİZ">Ekibimiz</a></li>
+                            <li><a href="#announcements" class="scroll" data-hover="DUYURULAR">Duyurular</a></li>
+                            <li><a href="#gallery" class="scroll" data-hover="GALERİ">Galeri</a></li>
+                            <li><a href="#contact" class="scroll" data-hover="İLETİŞİM">İletişim</a></li>
                         </ul>
                     </nav>
                 </div>
             </nav>
-            <div class="w3ls_search">
-                <div class="cd-main-header">
-                    <ul class="cd-header-buttons">
-                        <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-                    </ul>
-                </div>
-                <div id="cd-search" class="cd-search">
-                    <form asp-controller="Default" asp-action="Search" method="post">
-                        <input name="Search" type="search" placeholder="Arama yapın..." required="">
-                    </form>
-                </div>
-            </div>
+
         </div>
     </div>
     <div class="callbacks_container">
@@ -54,7 +43,7 @@
                 <div class="slider-info">
                     <h3>DÜNYA ÇAPINDA TARIM ÇÖZÜMLERİ</h3>
                     <p>Çiftçilerin kârını artırmak için yeni mahsuller yetiştiriyoruz.</p>
-                    <div class="readmore-w3"><a class="readmore" href="#" data-toggle="modal" data-target="#myModal1">Devamını Oku</a></div>
+                    <div class="readmore-w3"><a class="readmore" href="#" data-toggle="modal" data-target="#myModal2">Devamını Oku</a></div>
                 </div>
             </li>
         </ul>
