@@ -30,8 +30,6 @@ namespace BusinessLayer.Container
             services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
             services.AddScoped<IAboutService, AboutManager>();
             services.AddScoped<IAboutDal, EfAboutDal>();
-            services.AddScoped<IAdminService, AdminManager>();
-            services.AddScoped<IAdminDal, EfAdminDal>();
         }
     }
 }

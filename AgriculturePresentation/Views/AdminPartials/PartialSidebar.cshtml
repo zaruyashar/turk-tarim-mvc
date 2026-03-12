@@ -70,13 +70,6 @@
             </a>
         </li>
 
-        <li class="nav-item @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Admin" ? "active" : "")">
-            <a class="nav-link" asp-controller="Admin" asp-action="Index">
-                <i class="mdi mdi-security menu-icon"></i>
-                <span class="menu-title">Admin İşlemleri</span>
-            </a>
-        </li>
-
         <li class="nav-item">
             <a class="nav-link" asp-controller="Login" asp-action="LogOut">
                 <i class="mdi mdi-logout menu-icon"></i>
