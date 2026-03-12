@@ -14,7 +14,7 @@ namespace AgriculturePresentation.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var values = _announcementService.GetListAll();
+            var values = _announcementService.GetListAll().Where(x => x.Status == true).ToList();
             return View(values);
         }
     }

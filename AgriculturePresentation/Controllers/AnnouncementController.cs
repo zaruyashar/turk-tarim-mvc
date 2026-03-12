@@ -59,7 +59,13 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult EditAnnouncement(Announcement announcement)
         {
-            _announcementService.Update(announcement);
+            var value = _announcementService.GetById(announcement.AnnouncementID);
+
+            value.Title = announcement.Title;
+            value.Description = announcement.Description;
+            value.Date = announcement.Date;
+
+            _announcementService.Update(value);
             return RedirectToAction("Index");
         }
 
