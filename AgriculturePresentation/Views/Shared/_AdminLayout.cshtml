@@ -10,14 +10,11 @@
 <body>
     <div class="container-scroller">
 
-        <!-- partial:../../partials/_navbar.html -->
         @await Html.PartialAsync("~/Views/AdminPartials/PartialNavbar.cshtml")
 
-        <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            @await Html.PartialAsync("~/Views/AdminPartials/PartialSidebar.cshtml")
 
-            <!-- page-body-wrapper ends -->
+            @await Html.PartialAsync("~/Views/AdminPartials/PartialSidebar.cshtml")
 
             <div class="main-panel">
                 <div class="content-wrapper">
@@ -25,15 +22,21 @@
                         @RenderBody()
                     </div>
                 </div>
-                <!-- content-wrapper ends -->
-                <!-- partial -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
+                            © @DateTime.Now.Year <b>Türk Tarım</b>. Tüm Hakları Saklıdır.
+                        </span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                            Geliştiren: <a href="https://github.com/zaruyashar" target="_blank" rel="noopener noreferrer">zaruyashar</a> |
+                            <span class="text-muted">Tasarım: MajesticAdmin</span>
+                        </span>
+                    </div>
+                </footer>
             </div>
         </div>
     </div>
-    <!-- plugins:js -->
     @await Html.PartialAsync("~/Views/AdminPartials/PartialScripts.cshtml")
-
-
 
     <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/vendors/base/vendor.bundle.base.js"></script>
     <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/js/off-canvas.js"></script>
