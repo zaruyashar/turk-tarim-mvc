@@ -17,7 +17,11 @@ namespace AgriculturePresentation.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var values = _contactService.GetListAll();
+            var values = _contactService.GetListAll()
+                                        .OrderByDescending(x => x.ContactID)
+                                        .Take(5)
+                                        .ToList();
+
             return View(values);
         }
     }

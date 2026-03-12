@@ -18,7 +18,7 @@ namespace AgriculturePresentation.Controllers
 
         public IActionResult Index()
         {
-            var values = _contactService.GetListAll();
+            var values = _contactService.GetListAll().OrderByDescending(x => x.ContactID).ToList();
             return View(values);
         }
 
