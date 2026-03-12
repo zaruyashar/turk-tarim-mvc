@@ -1,5 +1,4 @@
 ﻿using AgriculturePresentation.Models;
-using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,12 +7,13 @@ namespace AgriculturePresentation.Controllers
     public class ProfileController : AdminBaseController
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public ProfileController(UserManager<IdentityUser> userManager)
+        public ProfileController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -34,46 +34,42 @@ namespace AgriculturePresentation.Controllers
 
             UserEditViewModel userEditViewModel = new UserEditViewModel()
             {
-                Mail = values.Email ?? string.Empty,
-                Phone = values.PhoneNumber ?? string.Empty,
-                CurrentPassword = "",
+                Mail = values.Email ?? "",
+                Phone = values.PhoneNumber ?? "",
                 Password = "",
+                CurrentPassword = "",
                 ConfirmPassword = ""
             };
 
             return View(userEditViewModel);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Index(UserEditViewModel p)
         {
-            var userName = User.Identity?.Name;
-
-            if (string.IsNullOrEmpty(userName))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-
+            var userName = User.Identity?.Name ?? "";
             var values = await _userManager.FindByNameAsync(userName);
 
-            if (values == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
+            if (values == null) return NotFound();
 
-            if (p.Password == p.ConfirmPassword)
+            bool isPasswordChanged = false;
+
+            values.Email = p.Mail;
+            values.PhoneNumber = p.Phone;
+
+            if (!string.IsNullOrEmpty(p.Password))
             {
+                if (string.IsNullOrEmpty(p.CurrentPassword))
+                {
+                    ModelState.AddModelError("CurrentPassword", "Şifre değişimi için mevcut şifre şarttır.");
+                    return View(p);
+                }
+
                 var passwordChangeResult = await _userManager.ChangePasswordAsync(values, p.CurrentPassword, p.Password);
 
                 if (passwordChangeResult.Succeeded)
                 {
-                    values.Email = p.Mail;
-                    values.PhoneNumber = p.Phone;
-
-                    await _userManager.UpdateAsync(values);
-
-                    return RedirectToAction("Index", "Login");
+                    isPasswordChanged = true; 
                 }
                 else
                 {
@@ -81,13 +77,25 @@ namespace AgriculturePresentation.Controllers
                     {
                         ModelState.AddModelError("", item.Description);
                     }
+                    return View(p);
                 }
             }
-            else
-            {
-                ModelState.AddModelError("", "Şifreler birbiriyle uyuşmuyor.");
-            }
 
+            var result = await _userManager.UpdateAsync(values);
+            if (result.Succeeded)
+            {
+                if (isPasswordChanged)
+                {
+                    await _signInManager.SignOutAsync();
+                    TempData["SuccessMessage"] = "PasswordChanged";
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    TempData["SuccessMessage"] = "ProfileUpdated";
+                    return RedirectToAction("Index");
+                }
+            }
             return View(p);
         }
     }

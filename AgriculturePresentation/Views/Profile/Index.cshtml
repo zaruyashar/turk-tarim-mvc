@@ -12,33 +12,32 @@
             <form class="forms-sample" method="post">
                 <div class="form-group">
                     <label>E-posta Adresi</label>
-                    <input type="text" class="form-control"
-                           placeholder="E-posta adresini girin"
-                           asp-for="Mail">
+                    <input type="text" class="form-control" asp-for="Mail">
+                    <span asp-validation-for="Mail" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
                     <label>Telefon Numarası</label>
-                    <input type="text" class="form-control"
-                           placeholder="Telefon numarasını girin"
-                           asp-for="Phone">
+                    <input type="text" class="form-control" asp-for="Phone">
+                    <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
                     <label>Mevcut Şifre</label>
-                    <input type="password" class="form-control"
-                           placeholder="Mevcut şifrenizi girin"
-                           asp-for="CurrentPassword" />
+                    <input type="password" class="form-control" asp-for="CurrentPassword" />
+                    <span asp-validation-for="CurrentPassword" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
-                    <label>Şifre</label>
-                    <input type="password" class="form-control"
-                           placeholder="Yeni şifreyi girin"
-                           asp-for="Password">
+                    <label>Yeni Şifre</label>
+                    <input type="password" class="form-control" asp-for="Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
-                    <label>Şifre (Tekrar)</label>
-                    <input type="password" class="form-control"
-                           placeholder="Yeni şifreyi tekrar girin"
-                           asp-for="ConfirmPassword">
+                    <label>Yeni Şifre (Tekrar)</label>
+                    <input type="password" class="form-control" asp-for="ConfirmPassword">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
                 <br />
                 <button type="submit" class="btn btn-outline-info me-2">Kaydet</button>
@@ -46,3 +45,18 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (TempData["SuccessMessage"]?.ToString() == "ProfileUpdated")
+{
+    <script>
+        Swal.fire({
+            title: 'Başarılı!',
+            text: 'Profil bilgileriniz güncellendi.',
+            icon: 'success',
+            confirmButtonText: 'Tamam',
+            confirmButtonColor: '#7062e3'
+        });
+    </script>
+}
