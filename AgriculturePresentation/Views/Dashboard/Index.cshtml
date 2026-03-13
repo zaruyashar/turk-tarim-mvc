@@ -3,9 +3,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@await Component.InvokeAsync("_DashboardHeaderPartial")
-
-
 @await Component.InvokeAsync("_DashboardNavbarPartial")
 
 @await Component.InvokeAsync("_DashboardOverviewPartial")
@@ -14,4 +11,11 @@
 
 @await Component.InvokeAsync("_DashboardTablePartial")
 
-@await Component.InvokeAsync("_DashboardScriptPartial")
+
+@section Scripts {
+    <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/js/dashboard.js"></script>
+    <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/js/data-table.js"></script>
+}
