@@ -5,49 +5,62 @@
 
 <!DOCTYPE html>
 <html lang="tr">
-<head>
+    <head>
     <title>ADMİN KAYIT FORMU</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="~/images/sprout.png?v=2" />
     <link rel="stylesheet" href="~/snow-login-form-starter/css/style.css" type="text/css" media="all" />
     <style>
-        .w3l-login {
-            background-size: cover !important;
-            background-attachment: fixed !important;
-            background-position: center !important;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+            .w3l-login {
+                height: auto !important;
+                background-size: cover !important;
+                background-attachment: fixed !important;
+                background-position: center !important;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .theme-button {
+                opacity: 1 !important;
+                position: relative;
+                z-index: 2;
+            }
 
-        .brand-logo {
-            font-size: 30px !important;
-            margin-bottom: 20px !important;
-        }
+            #stars, #stars2, #stars3 {
+                z-index: 1;
+            }
 
-        .new-signup {
-            margin-top: 30px;
-            text-align: center;
-        }
 
-        .signup-text {
-            font-size: 15px;
-        }
+            .brand-logo {
+                font-size: 30px !important;
+                margin-bottom: 20px !important;
+            }
 
-        .sign-link {
-            color: #00d2ff !important;
-            font-weight: bold;
-            text-decoration: underline;
-        }
+            .new-signup {
+                margin-top: 30px;
+                text-align: center;
+            }
 
-            .sign-link:hover {
-                transform: scale(1.1);
+            .signup-text {
+                font-size: 15px;
+            }
+
+            .sign-link {
+                color: #00d2ff !important;
+                font-weight: bold;
                 text-decoration: underline;
             }
+
+             .sign-link:hover {
+                 transform: scale(1.1);
+                 text-decoration: underline;
+             }
     </style>
 </head>
+
 <body>
     <section class="w3l-login">
         <div class="overlay">
@@ -66,24 +79,26 @@
                             <input type="email" asp-for="Mail" placeholder="E-posta adresi" required="">
                         </div>
                         <div class="form-input">
-                            <input type="password" asp-for="Password" placeholder="Şifre" required="">
+                             <input type="password" asp-for="Password" placeholder="Şifre" required="">
                         </div>
                         <div class="form-input">
-                            <input type="password" asp-for="PasswordConfirm" placeholder="Şifre tekrar" required="">
+                             <input type="password" asp-for="PasswordConfirm" placeholder="Şifre tekrar" required="">
                         </div>
                         <button type="submit" class="btn btn-primary theme-button mt-4">Kaydol</button>
 
-                        <div class="new-signup">
+                         <div class="new-signup">
                             <p class="signup-text">Zaten bir hesabınız var mı? <a href="/Login/Index/" class="sign-link">Giriş yapın!</a></p>
-                        </div>
+                         </div>
                     </form>
                 </div>
             </div>
-        </div>
+         </div>
+
         <div id='stars'></div><div id='stars2'></div><div id='stars3'></div>
         <div class="copy-right">
-            <p>&copy; @DateTime.Now.Year. Tüm hakları sakladır. | Geliştiren: <a href="https://github.com/zaruyashar" target="_blank">zaruyashar</a> | Tasarım: <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
+        <p>&copy; @DateTime.Now.Year. Tüm hakları sakladır. | Geliştiren: <a href="https://github.com/zaruyashar" target="_blank">zaruyashar</a> | Tasarım: <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
         </div>
+
     </section>
 </body>
 </html>

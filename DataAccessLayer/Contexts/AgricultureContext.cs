@@ -9,6 +9,9 @@ namespace DataAccessLayer.Contexts
 {
     public class AgricultureContext : IdentityDbContext
     {
+        public AgricultureContext(DbContextOptions<AgricultureContext> options) : base(options)
+        {
+        }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<GalleryImage> GalleryImages { get; set; }

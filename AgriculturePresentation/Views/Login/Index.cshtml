@@ -13,14 +13,25 @@
     <link rel="stylesheet" href="~/snow-login-form-starter/css/style.css" type="text/css" media="all" />
     <style>
         .w3l-login {
-            background-size: cover !important;
-            background-attachment: fixed !important;
-            background-position: center !important;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+                height: auto !important;
+                background-size: cover !important;
+                background-attachment: fixed !important;
+                background-position: center !important;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
         }
+
+            .theme-button {
+                opacity: 1 !important;
+                position: relative;
+                z-index: 2;
+            }
+
+            #stars, #stars2, #stars3 {
+                z-index: 1;
+            }
 
         .brand-logo {
             font-size: 30px !important;
@@ -46,6 +57,7 @@
                 transform: scale(1.1);
                 text-decoration: underline;
             }
+            
     </style>
 </head>
 

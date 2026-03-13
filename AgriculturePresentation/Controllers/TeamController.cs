@@ -111,10 +111,6 @@ namespace AgriculturePresentation.Controllers
             existingTeam.PersonName = model.Name;
             existingTeam.Title = model.Title;
             existingTeam.ImageUrl = model.ImageUrl;
-            existingTeam.FacebookUrl = model.FacebookUrl;
-            existingTeam.InstagramUrl = model.InstagramUrl;
-            existingTeam.WebsiteUrl = model.WebsiteUrl;
-            existingTeam.TwitterUrl = model.TwitterUrl;
 
             TeamValidator validationRules = new TeamValidator();
             ValidationResult result = validationRules.Validate(existingTeam);

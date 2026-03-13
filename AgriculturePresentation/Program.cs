@@ -23,6 +23,15 @@ namespace AgriculturePresentation
             builder.Services.AddDbContext<AgricultureContext>(options =>
                     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddScoped<IAboutDal, EfAboutDal>();
+            builder.Services.AddScoped<IAddressDal, EfAddressDal>();
+            builder.Services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
+            builder.Services.AddScoped<IContactDal, EfContactDal>();
+            builder.Services.AddScoped<IGalleryImageDal, EfGalleryImageDal>();
+            builder.Services.AddScoped<IServiceDal, EfServiceDal>();
+            builder.Services.AddScoped<ITeamDal, EfTeamDal>();
+            builder.Services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
+
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                         .AddEntityFrameworkStores<AgricultureContext>();
 

@@ -54,7 +54,17 @@ namespace BusinessLayer.Concrete
             {
                 throw new ArgumentNullException(nameof(t));
             }
-            _serviceDal.Update(t);
+
+            var value = _serviceDal.GetById(t.ServiceID);
+
+            if (value != null)
+            {
+                value.Title = t.Title;
+                value.Description = t.Description;
+                value.Image = t.Image;
+
+                _serviceDal.Update(value);
+            }
         }
     }
 }
