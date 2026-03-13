@@ -53,30 +53,32 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(RegisterViewModel registerViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(registerViewModel);
+            }
+
             IdentityUser identityUser = new IdentityUser()
             {
                 UserName = registerViewModel.UserName,
                 Email = registerViewModel.Mail
             };
 
-            if (registerViewModel.Password == registerViewModel.PasswordConfirm)
-            {
-                var result = await _userManager.CreateAsync(identityUser, registerViewModel.Password);
+            var result = await _userManager.CreateAsync(identityUser, registerViewModel.Password);
 
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    foreach (var item in result.Errors)
-                    {
-                        ModelState.AddModelError("", item.Description);
-                    }
-                }
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
             }
+
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError("", item.Description);
+            }
+
             return View(registerViewModel);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> LogOut()
@@ -84,7 +86,5 @@ namespace AgriculturePresentation.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Login");
         }
-
-
     }
 }

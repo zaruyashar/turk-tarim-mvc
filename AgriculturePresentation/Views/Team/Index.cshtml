@@ -35,7 +35,7 @@
                                     <td>@(string.IsNullOrEmpty(item.PersonName) ? "Belirtilmemiş" : item.PersonName)</td>
                                     <td>@(string.IsNullOrEmpty(item.Title) ? "Belirtilmemiş" : item.Title)</td>
                                     <td>
-                                        <form asp-controller="Team" asp-action="DeleteTeam" asp-route-id="@item.TeamID" method="post">
+                                        <form asp-controller="Team" asp-action="DeleteTeam" asp-route-id="@item.TeamID" method="post" style="display:inline;">
                                             <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">Sil</button>
                                         </form>
                                     </td>

@@ -60,7 +60,7 @@ namespace AgriculturePresentation.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
-            return View();
+            return View(model);
         }
 
 

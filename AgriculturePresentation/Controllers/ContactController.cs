@@ -4,6 +4,7 @@ using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace AgriculturePresentation.Controllers
 {
@@ -22,6 +23,7 @@ namespace AgriculturePresentation.Controllers
             return View(values);
         }
 
+        [HttpPost]
         public IActionResult DeleteMessage(int id)
         {
             var value = _contactService.GetById(id);

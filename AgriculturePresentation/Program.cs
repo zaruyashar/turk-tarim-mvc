@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.RateLimiting;
 
 namespace AgriculturePresentation
@@ -19,7 +20,8 @@ namespace AgriculturePresentation
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<AgricultureContext>();
+            builder.Services.AddDbContext<AgricultureContext>(options =>
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                         .AddEntityFrameworkStores<AgricultureContext>();

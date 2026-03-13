@@ -34,6 +34,7 @@ namespace AgriculturePresentation.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public IActionResult DeleteAnnouncement(int id)
         {
             var values = _announcementService.GetById(id);
@@ -69,12 +70,14 @@ namespace AgriculturePresentation.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public IActionResult ChangeStatusToTrue(int id)
         {
             _announcementService.AnnouncementStatusToTrue(id);
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public IActionResult ChangeStatusToFalse(int id)
         {
             _announcementService.AnnouncementStatusToFalse(id);

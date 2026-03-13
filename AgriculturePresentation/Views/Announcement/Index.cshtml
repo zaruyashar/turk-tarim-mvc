@@ -34,14 +34,22 @@
                                     <td>
                                         @if (item.Status)
                                         {
-                                            <a asp-controller="Announcement" asp-action="ChangeStatusToFalse" asp-route-id="@item.AnnouncementID" class="btn btn-outline-warning">Pasif Yap</a>
+                                            <form asp-controller="Announcement" asp-action="ChangeStatusToFalse" asp-route-id="@item.AnnouncementID" method="post" style="display:inline;">
+                                                <button type="submit" class="btn btn-outline-warning">Pasif Yap</button>
+                                            </form>
                                         }
                                         else
                                         {
-                                            <a asp-controller="Announcement" asp-action="ChangeStatusToTrue" asp-route-id="@item.AnnouncementID" class="btn btn-outline-info">Aktif Yap</a>
+                                            <form asp-controller="Announcement" asp-action="ChangeStatusToTrue" asp-route-id="@item.AnnouncementID" method="post" style="display:inline;">
+                                                <button type="submit" class="btn btn-outline-info">Aktif Yap</button>
+                                            </form>
                                         }
                                     </td>
-                                    <td><a asp-controller="Announcement" asp-action="DeleteAnnouncement" asp-route-id="@item.AnnouncementID" class="btn btn-outline-danger" onclick="return confirm('Bu duyuruyu silmek istediğinize emin misiniz?');">Sil</a></td>
+                                    <td>
+                                        <form asp-controller="Announcement" asp-action="DeleteAnnouncement" asp-route-id="@item.AnnouncementID" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bu duyuruyu silmek istediğinize emin misiniz?');">Sil</button>
+                                        </form>
+                                    </td>
                                     <td><a asp-controller="Announcement" asp-action="EditAnnouncement" asp-route-id="@item.AnnouncementID" class="btn btn-outline-success">Güncelle</a></td>
                                 </tr>
                             }

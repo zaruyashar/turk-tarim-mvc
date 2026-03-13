@@ -96,7 +96,14 @@ namespace AgriculturePresentation.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            return View(p);
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError("", item.Description);
+                }
+                return View(p);
+            }
         }
     }
 }

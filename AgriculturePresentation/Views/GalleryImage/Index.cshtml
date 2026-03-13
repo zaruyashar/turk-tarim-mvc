@@ -28,7 +28,11 @@
                                         <img src="@(string.IsNullOrEmpty(item.GalleryImageUrl) ? "/images/default-avatar.png" : item.GalleryImageUrl)" alt="image" />
                                     </td>
                                     <td>@(string.IsNullOrEmpty(item.Title) ? "Belirtilmemiş" : item.Title)</td>
-                                    <td><a asp-controller="GalleryImage" asp-action="DeleteGalleryImage" asp-route-id="@item.GalleryImageID" class="btn btn-outline-danger" onclick="return confirm('Bu görseli silmek istediğinize emin misiniz?');">Sil</a></td>
+                                    <td>
+                                        <form asp-controller="GalleryImage" asp-action="DeleteGalleryImage" asp-route-id="@item.GalleryImageID" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bu görseli silmek istediğinize emin misiniz?');">Sil</button>
+                                        </form>
+                                    </td>
                                     <td><a asp-controller="GalleryImage" asp-action="EditGalleryImage" asp-route-id="@item.GalleryImageID" class="btn btn-outline-success">Güncelle</a></td>
                                 </tr>
                             }

@@ -43,6 +43,7 @@ namespace AgriculturePresentation.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public IActionResult DeleteService(int id)
         {
             var values = _serviceService.GetById(id);

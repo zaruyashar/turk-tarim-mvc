@@ -46,9 +46,10 @@ namespace AgriculturePresentation.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
-            return View();
+            return View(galleryImage);
         }
 
+        [HttpPost]
         public IActionResult DeleteGalleryImage(int id)
         {
             var value = _galleryImageService.GetById(id);
@@ -91,7 +92,7 @@ namespace AgriculturePresentation.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
-            return View();
+            return View(galleryImage);
         }
     }
 }

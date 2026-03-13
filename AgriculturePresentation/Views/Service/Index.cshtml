@@ -28,7 +28,11 @@
                                         <i class="@item.Image" style="font-size: 24px; color: #4d83ff;"></i>
                                     </td>
                                     <td>@(string.IsNullOrEmpty(item.Title) ? "Belirtilmemiş" : item.Title)</td>
-                                    <td><a asp-controller="Service" asp-action="DeleteService" asp-route-id="@item.ServiceID" class="btn btn-outline-danger" onclick="return confirm('Bu hizmeti silmek istediğinize emin misiniz?');">Sil</a></td>
+                                    <td>
+                                        <form asp-controller="Service" asp-action="DeleteService" asp-route-id="@item.ServiceID" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bu hizmeti silmek istediğinize emin misiniz?');">Sil</button>
+                                        </form>
+                                    </td>
                                     <td><a asp-controller="Service" asp-action="EditService" asp-route-id="@item.ServiceID" class="btn btn-outline-success">Güncelle</a></td>
                                 </tr>
                             }

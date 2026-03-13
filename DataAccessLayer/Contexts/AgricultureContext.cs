@@ -9,14 +9,6 @@ namespace DataAccessLayer.Contexts
 {
     public class AgricultureContext : IdentityDbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("server=localhost;" +
-                "database=DbAgriculture;" +
-                "integrated security=true;" +
-                "TrustServerCertificate = True;");
-        }
-
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<GalleryImage> GalleryImages { get; set; }

@@ -42,7 +42,9 @@
                                     <td>@(string.IsNullOrEmpty(item.Mail) ? "Belirtilmemiş" : item.Mail)</td>
                                     <td>@item.Date.ToString("dd.MM.yyyy")</td>
                                     <td>
-                                        <a asp-controller="Contact" asp-action="DeleteMessage" asp-route-id="@item.ContactID" class="btn btn-outline-danger" onclick="return confirm('Bu mesajı silmek istediğinize emin misiniz?');">Sil</a>
+                                        <form asp-controller="Contact" asp-action="DeleteMessage" asp-route-id="@item.ContactID" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bu mesajı silmek istediğinize emin misiniz?');">Sil</button>
+                                        </form>
                                     </td>
                                     <td>
                                         <a asp-controller="Contact" asp-action="MessageDetails" asp-route-id="@item.ContactID" class="btn btn-outline-success">Mesajı Gör</a>
