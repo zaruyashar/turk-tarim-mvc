@@ -8,25 +8,25 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Mesaj Detayları Güncelleme Sayfası</h4>
+            <h4 class="card-title">Mesaj Detayları</h4>
             <form class="forms-sample" method="post">
                 <div class="form-group">
                     @Html.HiddenFor(x => x.ContactID)
 
                     <label for="exampleInputName1">Ad Soyadı</label>
-                    <input type="text" class="form-control" asp-for="Name">
+                    <input type="text" class="form-control" asp-for="Name" readonly>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputName1">E-posta Adresi</label>
-                    <input type="text" class="form-control" asp-for="Mail">
+                    <input type="text" class="form-control" asp-for="Mail" readonly>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputName1">Tarih</label>
-                    <input type="date" class="form-control" asp-for="Date">
+                    <input type="text" class="form-control" asp-for="Date" asp-format="{0:dd.MM.yyyy}" readonly>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputName1">Mesaj Detayı</label>
-                    <textarea class="form-control" cols="5" rows="20" asp-for="Message"></textarea>
+                    <textarea class="form-control" cols="5" rows="10" asp-for="Message" readonly></textarea>
                 </div>
 
                 <a href="/Contact/Index/" class="btn btn-outline-info me-2">Mesajlara Dön</a>
