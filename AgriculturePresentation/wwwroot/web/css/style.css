@@ -2871,4 +2871,50 @@ textarea:focus{
 		font-size: 13.4px;
 	}
 }
+
+
+/* Mobil Top Header Overflow Fixi */
+@media (max-width: 767px) {
+	.w3l_header_left {
+		float: none !important;
+		text-align: center !important;
+		padding: 5px 10px !important;
+		width: 100% !important;
+		box-sizing: border-box !important;
+	}
+
+		.w3l_header_left ul {
+			padding: 0 !important;
+			margin: 0 !important;
+			display: flex !important;
+			flex-wrap: wrap !important;
+			justify-content: center !important;
+			align-items: center !important;
+			gap: 5px 12px !important;
+		}
+
+			.w3l_header_left ul li {
+				display: inline-block !important;
+				margin: 0 !important;
+				font-size: 11.5px !important;
+				line-height: 1.2 !important;
+				white-space: normal !important;
+			}
+
+	.w3l_header_right {
+		float: none !important;
+		text-align: center !important;
+		margin: 0 auto 8px auto !important;
+		width: 100% !important;
+	}
+
+	.w3ls-social-icons.text-left {
+		text-align: center !important;
+	}
+
+	.w3ls-social-icons i {
+		padding: 5px 8px !important;
+		font-size: 12px !important;
+	}
+}
 /*--responsive--*/
