@@ -8,10 +8,10 @@
 {
     foreach (var item in Model)
     {
-        <a class="dropdown-item" asp-controller="Contact" asp-action="MessageDetails" asp-route-id="@item.ContactID" style="width: 100% !important; padding: 12px 15px !important; display: block;">
-            <div class="item-content flex-grow" style="width: 100%; display: flex; flex-direction: column;">
-                <h6 class="font-weight-normal" style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 5px; gap: 10px;">
-                    <span style="flex: 1 1 auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+        <a class="dropdown-item" asp-controller="Contact" asp-action="MessageDetails" asp-route-id="@item.ContactID" style="width: 100% !important; padding: 12px 15px !important; display: block; overflow: hidden;">
+            <div class="item-content flex-grow" style="width: 100%; display: flex; flex-direction: column; overflow: hidden;">
+                <h6 class="font-weight-normal" style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 5px; gap: 8px; overflow: hidden;">
+                    <span style="flex: 1 1 0%; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         <i class="mdi mdi-account text-primary me-2" aria-hidden="true"></i>
                         @item.Name
                     </span>
@@ -21,7 +21,7 @@
                         <span style="flex: 0 0 auto; background-color: #ff6600 !important; color: #ffffff !important; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 800; box-shadow: 0 2px 5px rgba(255,102,0,0.4);">YENİ</span>
                     }
                 </h6>
-                <p class="font-weight-light small-text text-muted mb-0" style="white-space: normal; line-height: 1.4;">
+                <p class="font-weight-light small-text text-muted mb-0" style="white-space: normal; line-height: 1.4; word-wrap: break-word; overflow: hidden;">
                     @(item.Message != null && item.Message.Length > 35 ? item.Message.Substring(0, 35) + "..." : item.Message)
                 </p>
             </div>

@@ -19,4 +19,16 @@
             });
         }
     });
+
+
+        document.addEventListener('click', function (event) {
+        const sidebar = document.getElementById('sidebar');
+        const toggler = document.querySelector('[data-toggle="offcanvas"]');
+    
+        if (window.innerWidth < 992 && sidebar && sidebar.classList.contains('active')) {
+            if (toggler && !sidebar.contains(event.target) && !toggler.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        }
+    });
 </script>
