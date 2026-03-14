@@ -60,18 +60,14 @@
 			stopPropagation(e);
 			popwin($('.pictures_eyes'));
 		});
-		function popwin(obj){
-			$('body').css({'overflow':'hidden'});
-			var Pwidth = obj.width();
-			var Pheight = obj.height();
-			obj.css({left:(win_w - Pwidth)/2,top:(win_h - Pheight)/2}).show();
+		function popwin(obj) {
+			$('body').css({ 'overflow': 'hidden' });
+			obj.css({ left: 0, top: 0 }).show();
 			$('.picshade,.pictures_eyes_close').fadeIn();
 			indicatorsList();
 		}
-		function updatePlace(obj){
-			var Pwidth = obj.width();
-			var Pheight = obj.height();
-			obj.css({left:(win_w - Pwidth)/2,top:(win_h - Pheight)/2});
+		function updatePlace(obj) {
+			obj.css({ left: 0, top: 0 });
 		}
 		function indicatorsList(){
 			var indHtml = '';
