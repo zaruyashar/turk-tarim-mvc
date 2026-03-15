@@ -39,12 +39,8 @@ namespace AgriculturePresentation.ViewComponents
             ViewBag.announcementTrue = _announcementService.GetListAll().Count(x => x.Status == true);
             ViewBag.announcementFalse = _announcementService.GetListAll().Count(x => x.Status == false);
 
-            // Ekip üyeleri (Veritabanındaki unvanların birebir eşleştiğinden emin ol)
-            var teams = _teamService.GetListAll();
-            ViewBag.urunPazarlama = teams.FirstOrDefault(x => x.Title == "Ürün Pazarlama")?.PersonName;
-            ViewBag.bakliyatYonetimi = teams.FirstOrDefault(x => x.Title == "Bakliyat Yönetimi")?.PersonName;
-            ViewBag.ekimUzmani = teams.FirstOrDefault(x => x.Title == "Ekim Uzmanı")?.PersonName;
-            ViewBag.sutUreticisi = teams.FirstOrDefault(x => x.Title == "Süt Üreticisi")?.PersonName;
+            // Dashboard overview ekip bölümü dinamik hale getirildi
+            ViewBag.Teams = _teamService.GetListAll();
 
             return View();
         }

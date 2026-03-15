@@ -24,8 +24,27 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td class="py-1">
-                                        <img src="@(string.IsNullOrEmpty(item.GalleryImageUrl) ? "/images/default-avatar.png" : item.GalleryImageUrl)" alt="image" />
+                                    <td class="py-1 text-center" style="width: 140px;">
+                                        @{
+                                            var imgUrl = string.IsNullOrWhiteSpace(item.GalleryImageUrl) ? "/images/cute-gallery-fallback.png" : item.GalleryImageUrl;
+                                        }
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                                            <img src="@imgUrl"
+                                                 style="width: 80px; height: 60px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+                                                 onerror="this.onerror=null;this.src='/images/cute-gallery-fallback.png'; $(this).siblings('.error-text').show();"
+                                                 alt="gallery-image" />
+        
+                                            @if (string.IsNullOrWhiteSpace(item.GalleryImageUrl))
+                                            {
+                                                <span style="font-size: 10px; color: #fd7e14; font-weight: 700;">Yol Tanımsız</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="error-text" style="font-size: 10px; color: #dc3545; font-weight: 700; display:none;">
+                                                    Hatalı Yol (404)
+                                                </span>
+                                            }
+                                        </div>
                                     </td>
                                     <td>@(string.IsNullOrEmpty(item.Title) ? "Belirtilmemiş" : item.Title)</td>
                                     <td>
