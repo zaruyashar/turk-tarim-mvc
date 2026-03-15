@@ -64,15 +64,32 @@
             {
                 foreach (var item in Model)
                 {
-                    <div class="@item.Class1" data-wow-delay=".5s">
-                        <h5>@item.Title</h5>
-                        <p>@item.Description</p>
+                    bool isBroken = string.IsNullOrWhiteSpace(item.Class1) || string.IsNullOrWhiteSpace(item.Image);
 
-                        <div class="@item.Class2">
-                            <i class="@item.Image" aria-hidden="true"></i>
-                            <p>@item.Title</p>
+                    if (isBroken)
+                    {
+                        <div class="sevices-w3layouts-grids" data-wow-delay=".5s">
+            
+                            <h5 style="color: #f58703; margin-top: 15px;">Kısa Bir Mola...</h5>
+                            <p style="color: #ddd; margin-top: 10px; font-size: 14px;">Traktörümüz uykusunu alınca hizmetimiz tekrar yayında olacak!</p>
+
+                            <div class="sevices-w3layouts-img" style="background: url('/images/cute-tractor-fallback.png') center/cover no-repeat;">
+                            </div>
+            
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="@item.Class1" data-wow-delay=".5s">
+                            <h5>@item.Title</h5>
+                            <p>@item.Description</p>
+
+                            <div class="@item.Class2">
+                                <i class="@item.Image" aria-hidden="true"></i>
+                                <p>@item.Title</p>
+                            </div>
+                        </div>
+                    }
                 }
             }
             else

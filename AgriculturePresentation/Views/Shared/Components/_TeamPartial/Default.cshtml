@@ -12,7 +12,13 @@
                 {
                     <div class="col-md-3 wthree_team_grid">
                         <div class="hovereffect">
-                            <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/web/images/t1.jpg" : item.ImageUrl)" alt=" " class="img-responsive" />
+
+                            @{
+                                string imagePath = string.IsNullOrWhiteSpace(item.ImageUrl) ? "/images/cute-team-fallback.png" : item.ImageUrl;
+                            }
+
+                            <img src="@imagePath" alt="Ekip Üyesi" class="img-responsive" onerror="this.onerror=null;this.src='/images/cute-team-fallback.png';" />
+                            
                             <div class="overlay">
                                 <div class="rotate">
                                     <p class="group1">

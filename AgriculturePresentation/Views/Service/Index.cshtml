@@ -24,8 +24,20 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td class="py-1 text-center" style="width: 50px;">
-                                        <i class="@item.Image" style="font-size: 24px; color: #4d83ff;"></i>
+                                    <td class="py-1 text-center" style="width: 130px;">
+                                        @if (string.IsNullOrWhiteSpace(item.Image) || string.IsNullOrWhiteSpace(item.Class1))
+                                        {
+                                            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                                                <i class="fa fa-exclamation-triangle text-danger" style="font-size: 20px;"></i>
+                                                <span style="font-size: 10px; color: #dc3545; font-weight: 700; text-transform: uppercase;">
+                                                    İkon Eksik!
+                                                </span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <i class="@item.Image" style="font-size: 24px; color: #4d83ff;"></i>
+                                        }
                                     </td>
                                     <td>@(string.IsNullOrEmpty(item.Title) ? "Belirtilmemiş" : item.Title)</td>
                                     <td>
