@@ -1,39 +1,31 @@
 ﻿<script type="text/javascript" src="~/web/js/jquery-2.1.4.min.js"></script>
-<!--gallery-js -->
 <script src="~/web/js/jquery.picEyes.js"></script>
 <script>
     $(function(){
-        //picturesEyes($('.demo li'));
         $('.demo li').picEyes();
     });
 </script>
-<!--//gallery-js -->
-<!-- start-smoth-scrolling -->
+
 <script type="text/javascript" src="~/web/js/move-top.js"></script>
 <script type="text/javascript" src="~/web/js/easing.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function($) {
-        $(".scroll").click(function(event){
-            event.preventDefault();
-            $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-        });
+    $(".scroll").click(function(event){
+    event.preventDefault();
+    $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+    });
     });
 </script>
-<!-- start-smoth-scrolling -->
-<!--light-box-files -->
+
 <script src="~/web/js/jquery.chocolat.js"></script>
-<!--//light-box-files -->
 <script type="text/javascript">
     $(function() {
-        $('.gallery a').Chocolat();
+    $('.gallery a').Chocolat();
     });
 </script>
-<!-- //js -->
 <script src="~/web/js/responsiveslides.min.js"></script>
 <script>
-    // You can also use "$(window).load(function() {"
     $(function () {
-      // Slideshow 3
       $("#slider3").responsiveSlides({
         auto: true,
         pager:true,
@@ -51,11 +43,7 @@
     });
 </script>
 
-
-<!--search-bar-->
 <script src="~/web/js/main.js"></script>
-<!--//search-bar-->
-<!--tabs-->
 <script src="~/web/js/easy-responsive-tabs.js"></script>
 <script>
     $(document).ready(function () {
@@ -75,27 +63,36 @@
     $('#verticalTab').easyResponsiveTabs({
     type: 'vertical',
     width: 'auto',
-    fit: true
+    fit: true,
+    closed: 'accordion'
     });
     });
 </script>
-<!--//tabs-->
-<!-- smooth scrolling -->
+
 <script type="text/javascript">
     $(document).ready(function() {
-    /*
-        var defaults = {
-        containerID: 'toTop', // fading element id
-        containerHoverID: 'toTopHover', // fading element hover id
-        scrollSpeed: 1200,
-        easingType: 'linear'
-        };
-    */
     $().UItoTop({ easingType: 'easeOutQuart' });
+    });
+
+
+
+    $(document).ready(function () {
+        
+    /* 1. MOBİL MENÜ BOŞLUĞA TIKLANINCA KAPANMA FİXİ */
+    $(document).click(function (event) {
+    var clickover = $(event.target);
+    var $navbar = $(".navbar-collapse");
+    var _opened = $navbar.hasClass("in");
+            
+    if (_opened === true && !clickover.hasClass("navbar-toggle") && clickover.parents('.navbar-collapse').length === 0) {
+    $("button.navbar-toggle").click();
+    }
+    });
+
+        
     });
 </script>
 
 
 <a href="#home" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-<!-- //smooth scrolling -->
 <script type="text/javascript" src="~/web/js/bootstrap-3.1.1.min.js"></script>
