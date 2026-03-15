@@ -2917,4 +2917,38 @@ textarea:focus{
 		font-size: 12px !important;
 	}
 }
-/*--responsive--*/
+
+/* For home page info popups */
+@media (max-width: 767px) {
+	.modal-dialog {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		min-height: 100vh !important;
+		margin: 0 auto !important;
+		padding: 15px !important;
+	}
+
+	.modal-content {
+		width: 100% !important;
+		max-height: 85vh !important;
+		overflow-y: auto !important;
+		border-radius: 8px !important;
+	}
+}
+
+/* to keep default ui top nav hamburger icon aligned */
+@media (max-width: 767px) {
+	.navbar-header {
+		text-align: center !important;
+		width: 100% !important;
+		float: none !important;
+	}
+
+	.navbar-toggle, .navbar-toggler {
+		float: none !important;
+		display: inline-block !important;
+		margin: 15px auto 10px auto !important;
+		position: static !important;
+	}
+}
