@@ -3024,3 +3024,36 @@ textarea:focus{
 				letter-spacing: 0.5px !important;
 			}
 }
+
+/* iphone xr ve pro max modellerdeki default > team > social media icon kaymaları için */
+@media (max-width: 767px) {
+	.group1, .group2 {
+		display: block !important;
+		width: 100% !important;
+		text-align: center !important;
+		white-space: nowrap !important;
+		position: absolute !important;
+		left: 50% !important;
+		transform: translate(-50%, -50%) !important;
+		margin: 0 !important;
+	}
+
+	.group1 {
+		top: calc(50% - 22px) !important;
+	}
+
+	.group2 {
+		top: calc(50% + 22px) !important;
+	}
+
+	.hovereffect a i {
+		padding: 0 !important;
+		width: 40px !important;
+		height: 40px !important;
+		line-height: 40px !important;
+		font-size: 16px !important;
+		margin: 0 2px !important;
+		display: inline-block !important;
+		box-sizing: border-box !important;
+	}
+}
