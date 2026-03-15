@@ -15,7 +15,10 @@ namespace AgriculturePresentation.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var values = _context.Addresses.Select(x => x.MapInfo).FirstOrDefault();
+            var values = _context.Addresses
+                        .OrderBy(x => x.AddressID)
+                        .Select(x => x.MapInfo)
+                        .FirstOrDefault();
             ViewBag.v = values;
             return View();
         }
