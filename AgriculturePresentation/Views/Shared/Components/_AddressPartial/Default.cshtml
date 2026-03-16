@@ -4,15 +4,26 @@
 <h3 class="tittle">Bize Ulaşın</h3>
 <p class="heading-btm-w3ls">Talep ve arzularınızı bize kolayca iletebilirsiniz.</p>
 
-@foreach (var item in Model)
+@if (Model != null && Model.Any())
 {
-
+    foreach (var item in Model)
+    {
+        <div class="col-md-3 contact-left">
+            <h4>Adres</h4>
+            <p>@(string.IsNullOrWhiteSpace(item.Description1) ? "Adres bilgisi güncelleniyor..." : item.Description1)</p>
+            <p>@(string.IsNullOrWhiteSpace(item.Description2) ? "Lütfen daha sonra tekrar kontrol edin." : item.Description2)</p>
+            <h4>Telefon</h4>
+            <p>@(string.IsNullOrWhiteSpace(item.Description4) ? "Telefon güncelleniyor..." : item.Description4)</p>
+        </div>
+    }
+}
+else
+{
     <div class="col-md-3 contact-left">
         <h4>Adres</h4>
-        <p>@item.Description1</p>
-        <p>@item.Description2</p>
+        <p>Adres bilgisi güncelleniyor...</p>
+        <p>Lütfen daha sonra tekrar kontrol edin.</p>
         <h4>Telefon</h4>
-        <p>@item.Description4</p>
-
+        <p>Telefon güncelleniyor...</p>
     </div>
 }

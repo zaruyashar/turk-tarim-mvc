@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 
- @await Component.InvokeAsync("_HeadPartial")
+@await Component.InvokeAsync("_HeadPartial")
 
 <body>
 
@@ -30,54 +30,54 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4>TÜRK TARIM</h4>
                     <img src="~/web/images/banner1.jpg" alt=" " class="img-responsive">
-                    <h5>ÇEVRE VE SÜRDÜRÜLEBİLİRLİK</h5>
-                    <p>Tarımda sürdürülebilirlik, doğal kaynaklarımızı koruyarak gelecek nesillere daha verimli topraklar bırakma vizyonumuzun temelidir. Modern sulama sistemleri ve çevre dostu tarım teknikleri kullanarak verimliliği artırırken, doğaya verilen zararı minimuma indiriyoruz. Çiftliğimizde kullandığımız yenilikçi ekipmanlar sayesinde enerji tasarrufu sağlıyor ve karbon ayak izimizi küçültüyoruz.</p>
+                        <h5>ÇEVRE VE SÜRDÜRÜLEBİLİRLİK</h5>
+                        <p>Tarımda sürdürülebilirlik, doğal kaynaklarımızı koruyarak gelecek nesillere daha verimli topraklar bırakma vizyonumuzun temelidir. Modern sulama sistemleri ve çevre dostu tarım teknikleri kullanarak verimliliği artırırken, doğaya verilen zararı minimuma indiriyoruz. Çiftliğimizde kullandığımız yenilikçi ekipmanlar sayesinde enerji tasarrufu sağlıyor ve karbon ayak izimizi küçültüyoruz.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4>TÜRK TARIM</h4>
-                    <img src="~/web/images/banner1.jpg" alt=" " class="img-responsive">
-                    <h5>DÜNYA ÇAPINDA TARIM ÇÖZÜMLERİ</h5>
-                    <p>Küresel tarım standartlarını yerel tecrübemizle birleştirerek dünya çapında çözümler sunuyoruz. Yeni mahsul çeşitleri, toprak analizi destekli gübreleme ve akıllı tarım teknolojileri ile çiftçilerimizin rekabet gücünü artırıyoruz. Amacımız, en yüksek kalitede verimi elde ederken küresel gıda güvenliğine sürdürülebilir katkı sağlamaktır.</p>
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4>TÜRK TARIM</h4>
+                        <img src="~/web/images/banner1.jpg" alt=" " class="img-responsive">
+                            <h5>DÜNYA ÇAPINDA TARIM ÇÖZÜMLERİ</h5>
+                            <p>Küresel tarım standartlarını yerel tecrübemizle birleştirerek dünya çapında çözümler sunuyoruz. Yeni mahsul çeşitleri, toprak analizi destekli gübreleme ve akıllı tarım teknolojileri ile çiftçilerimizin rekabet gücünü artırıyoruz. Amacımız, en yüksek kalitede verimi elde ederken küresel gıda güvenliğine sürdürülebilir katkı sağlamaktır.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    @await Component.InvokeAsync("_AboutPartial")
+            @await Component.InvokeAsync("_AboutPartial")
 
-    @await Component.InvokeAsync("_ServicePartial")
+            @await Component.InvokeAsync("_ServicePartial")
 
-    @await Component.InvokeAsync("_TeamPartial")
+            @await Component.InvokeAsync("_TeamPartial")
 
-    @await Component.InvokeAsync("_AnnouncementPartial")
+            @await Component.InvokeAsync("_AnnouncementPartial")
 
-    @await Component.InvokeAsync("_GalleryImagePartial")
+            @await Component.InvokeAsync("_GalleryImagePartial")
 
-    <!--footer-->
-    <div class="contact-agile" id="contact">
-        <div class="container">
+            <!--footer-->
+            <div class="contact-agile" id="contact">
+                <div class="container">
 
-            @await Component.InvokeAsync("_AddressPartial")
+                    @await Component.InvokeAsync("_AddressPartial")
 
-            @await Html.PartialAsync("/Views/Default/SendMessage.cshtml")
-        </div>
-    </div>
+                    @await Html.PartialAsync("/Views/Default/SendMessage.cshtml")
+                </div>
+            </div>
 
-    @await Component.InvokeAsync("_MapPartial")
+            @await Component.InvokeAsync("_MapPartial")
 
-    <div class="copy">
-        <p>© @DateTime.Now.Year Türk Tarım. Tüm Hakları Saklıdır. | Geliştiren: <a href="https://github.com/zaruyashar" target="_blank" rel="noopener noreferrer">zaruyashar</a> | Tasarım: <a href="https://w3layouts.com/" target="_blank" rel="noopener noreferrer">W3layouts</a></p>
-    </div>
+            <div class="copy">
+                <p>© @DateTime.Now.Year Türk Tarım. Tüm Hakları Saklıdır. | Geliştiren: <a href="https://github.com/zaruyashar" target="_blank" rel="noopener noreferrer">zaruyashar</a> | Tasarım: <a href="https://w3layouts.com/" target="_blank" rel="noopener noreferrer">W3layouts</a></p>
+            </div>
 
-    @await Html.PartialAsync("/Views/Default/ScriptPartial.cshtml")
+            @await Html.PartialAsync("/Views/Default/ScriptPartial.cshtml")
 
-</body>
-</html>
+        </body>
+    </html>

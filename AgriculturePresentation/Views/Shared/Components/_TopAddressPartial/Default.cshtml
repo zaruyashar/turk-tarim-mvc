@@ -2,12 +2,34 @@
 @model List<Address>
 
 <div class="w3l_header_left">
-    @foreach (var item in Model)
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <ul>
+                <li>
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                    @(string.IsNullOrWhiteSpace(item.Description1) && string.IsNullOrWhiteSpace(item.Description2) ? "Adres bilgisi güncelleniyor..." : $"{item.Description1}, {item.Description2}".Trim(',', ' '))
+                </li>
+                <li>
+                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                    @(string.IsNullOrWhiteSpace(item.Description4) ? "Telefon güncelleniyor..." : item.Description4)
+                </li>
+                <li>
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <a href="mailto:@(string.IsNullOrWhiteSpace(item.Description3) ? "info@example.com" : item.Description3)">
+                        @(string.IsNullOrWhiteSpace(item.Description3) ? "E-posta güncelleniyor..." : item.Description3)
+                    </a>
+                </li>
+            </ul>
+        }
+    }
+    else
     {
         <ul>
-            <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>@item.Description1, @item.Description2</li>
-            <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>@item.Description4</li>
-            <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:info@example.com">@item.Description3</a></li>
+            <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Adres bilgisi güncelleniyor...</li>
+            <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon güncelleniyor...</li>
+            <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:info@example.com">E-posta güncelleniyor...</a></li>
         </ul>
     }
 </div>

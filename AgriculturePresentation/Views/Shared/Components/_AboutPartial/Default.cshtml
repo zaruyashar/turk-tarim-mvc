@@ -50,30 +50,35 @@
                 <li>Hakkımızda</li>
                 <li>Ortaklar</li>
             </ul>
+            
             @if (Model != null && Model.Any())
             {
                 foreach (var item in Model)
                 {
                     <div class="resp-tabs-container">
                         <div class="tab1">
-                            <p class="para-w3-agileits">@item.AboutHistory</p>
+                            <p class="para-w3-agileits">
+                                @(string.IsNullOrWhiteSpace(item.AboutHistory) ? "Tarihçe bilgisi güncellenmektedir." : item.AboutHistory)
+                            </p>
                         </div>
                         <div class="tab2">
-                            <p class="para-w3-agileits">@item.AboutUs</p>
+                            <p class="para-w3-agileits">
+                                @(string.IsNullOrWhiteSpace(item.AboutUs) ? "Hakkımızda bilgisi güncellenmektedir." : item.AboutUs)
+                            </p>
                         </div>
                         <div class="tab3">
                             <div class="clients">
                                 <ul>
                                     <li>
-                                        <img src="~/web/images/turk-as.jpg" alt="Türk AŞ" class="img-responsive partner-img" />
+                                        <img src="~/web/images/turk-as.jpg" alt="Türk AŞ" class="img-responsive partner-img" onerror="this.onerror=null;this.src='/images/emptystate-cute-fallback.png';" />
                                         <span>Türk AŞ</span>
                                     </li>
                                     <li>
-                                        <img src="~/web/images/cycle-re.jpg" alt="Cycle-RE" class="img-responsive partner-img" />
+                                        <img src="~/web/images/cycle-re.jpg" alt="Cycle-RE" class="img-responsive partner-img" onerror="this.onerror=null;this.src='/images/emptystate-cute-fallback.png';" />
                                         <span>Cycle-RE</span>
                                     </li>
                                     <li>
-                                        <img src="~/web/images/ata-fidan.jpg" alt="ATA Fidan" class="img-responsive partner-img" />
+                                        <img src="~/web/images/ata-fidan.jpg" alt="ATA Fidan" class="img-responsive partner-img" onerror="this.onerror=null;this.src='/images/emptystate-cute-fallback.png';" />
                                         <span>ATA Fidan</span>
                                     </li>
                                 </ul>
@@ -81,6 +86,35 @@
                         </div>
                     </div>
                 }
+            }
+            else
+            {
+                <div class="resp-tabs-container">
+                    <div class="tab1">
+                        <p class="para-w3-agileits">Tarihçe bilgisi güncellenmektedir.</p>
+                    </div>
+                    <div class="tab2">
+                        <p class="para-w3-agileits">Hakkımızda bilgisi güncellenmektedir.</p>
+                    </div>
+                    <div class="tab3">
+                        <div class="clients">
+                            <ul>
+                                <li>
+                                    <img src="~/web/images/turk-as.jpg" alt="Türk AŞ" class="img-responsive partner-img" onerror="this.onerror=null;this.src='/images/emptystate-cute-fallback.png';" />
+                                    <span>Türk AŞ</span>
+                                </li>
+                                <li>
+                                    <img src="~/web/images/cycle-re.jpg" alt="Cycle-RE" class="img-responsive partner-img" onerror="this.onerror=null;this.src='/images/emptystate-cute-fallback.png';" />
+                                    <span>Cycle-RE</span>
+                                </li>
+                                <li>
+                                    <img src="~/web/images/ata-fidan.jpg" alt="ATA Fidan" class="img-responsive partner-img" onerror="this.onerror=null;this.src='/images/emptystate-cute-fallback.png';" />
+                                    <span>ATA Fidan</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
     </div>
