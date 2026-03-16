@@ -1,15 +1,17 @@
 ﻿using AgriculturePresentation.Models;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace AgriculturePresentation.Controllers
 {
     public class ProfileController : AdminBaseController
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public ProfileController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public ProfileController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -36,6 +38,7 @@ namespace AgriculturePresentation.Controllers
             {
                 Mail = values.Email ?? "",
                 Phone = values.PhoneNumber ?? "",
+                ImageUrl = values.ImageUrl,
                 Password = "",
                 CurrentPassword = "",
                 ConfirmPassword = ""
@@ -56,6 +59,23 @@ namespace AgriculturePresentation.Controllers
 
             values.Email = p.Mail;
             values.PhoneNumber = p.Phone;
+
+
+            if (p.ImageFile != null)
+            {
+                var resource = Directory.GetCurrentDirectory();
+                var extension = Path.GetExtension(p.ImageFile.FileName);
+                var imagename = Guid.NewGuid() + extension;
+                var savepath = resource + "/wwwroot/userimages/" + imagename;
+
+                using (var stream = new FileStream(savepath, FileMode.Create))
+                {
+                    await p.ImageFile.CopyToAsync(stream);
+                }
+
+                values.ImageUrl = imagename;
+            }
+
 
             if (!string.IsNullOrEmpty(p.Password))
             {

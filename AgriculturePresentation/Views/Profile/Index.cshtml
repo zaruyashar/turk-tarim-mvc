@@ -9,55 +9,88 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Profil Düzenleme Sayfası</h4>
-            <form class="forms-sample" method="post">
+            
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                
+                <div class="text-center mb-4 pb-3 border-bottom">
+                    <div style="position: relative; display: inline-block;">
+                        <img id="profile-preview"
+                             src="/userimages/@(Model.ImageUrl ?? "default-admin.jpg")"
+                             onerror="this.onerror=null;this.src='/images/admin-fallback.jpg';"
+                             style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #4d83ff; box-shadow: 0 4px 10px rgba(0,0,0,0.15);"
+                             alt="admin-profile" />
+                        
+                        <label for="file-upload" style="position: absolute; bottom: 5px; right: 5px; background: #4d83ff; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                            <i class="mdi mdi-camera"></i>
+                        </label>
+                        <input id="file-upload" name="ImageFile" type="file" style="display: none;" onchange="previewImage(this)" accept="image/*" />
+                    </div>
+                    <div class="mt-2">
+                        <small class="text-muted">Profil resmini değiştirmek için ikona tıklayın</small>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>E-posta Adresi</label>
                     <input type="text" class="form-control" asp-for="Mail">
-                    <span asp-validation-for="Mail" class="text-danger"></span>
+                        <span asp-validation-for="Mail" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefon Numarası</label>
+                        <input type="text" class="form-control" asp-for="Phone">
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mevcut Şifre</label>
+                            <input type="password" class="form-control" asp-for="CurrentPassword" />
+                            <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Yeni Şifre</label>
+                            <input type="password" class="form-control" asp-for="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Yeni Şifre (Tekrar)</label>
+                                <input type="password" class="form-control" asp-for="ConfirmPassword">
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                
+                                <br />
+                                <button type="submit" class="btn btn-outline-info me-2">Kaydet</button>
+                                <a asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-secondary">İptal</a>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Telefon Numarası</label>
-                    <input type="text" class="form-control" asp-for="Phone">
-                    <span asp-validation-for="Phone" class="text-danger"></span>
-                </div>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-                <div class="form-group">
-                    <label>Mevcut Şifre</label>
-                    <input type="password" class="form-control" asp-for="CurrentPassword" />
-                    <span asp-validation-for="CurrentPassword" class="text-danger"></span>
-                </div>
+                <script>
+                    function previewImage(input) {
+                    if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                    document.getElementById('profile-preview').src = e.target.result;
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                    }
+                    }
+                </script>
 
-                <div class="form-group">
-                    <label>Yeni Şifre</label>
-                    <input type="password" class="form-control" asp-for="Password">
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Yeni Şifre (Tekrar)</label>
-                    <input type="password" class="form-control" asp-for="ConfirmPassword">
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                </div>
-                <br />
-                <button type="submit" class="btn btn-outline-info me-2">Kaydet</button>
-                <a asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-secondary">İptal</a>
-            </form>
-        </div>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-@if (TempData["SuccessMessage"]?.ToString() == "ProfileUpdated")
-{
-    <script>
-        Swal.fire({
-            title: 'Başarılı!',
-            text: 'Profil bilgileriniz güncellendi.',
-            icon: 'success',
-            confirmButtonText: 'Tamam',
-            confirmButtonColor: '#7062e3'
-        });
-    </script>
-}
+                @if (TempData["SuccessMessage"]?.ToString() == "ProfileUpdated")
+                {
+                    <script>
+                        Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Profil bilgileriniz güncellendi.',
+                        icon: 'success',
+                        confirmButtonText: 'Tamam',
+                        confirmButtonColor: '#7062e3'
+                        });
+                    </script>
+                }

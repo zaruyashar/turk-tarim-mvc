@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccessLayer.Contexts
 {
-    public class AgricultureContext : IdentityDbContext
+    public class AgricultureContext : IdentityDbContext<AppUser>
     {
         public AgricultureContext(DbContextOptions<AgricultureContext> options) : base(options)
         {

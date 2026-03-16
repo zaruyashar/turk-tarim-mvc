@@ -4,6 +4,7 @@ using BusinessLayer.Container;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete.EntityFramework;
 using DataAccessLayer.Contexts;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -32,7 +33,7 @@ namespace AgriculturePresentation
             builder.Services.AddScoped<ITeamDal, EfTeamDal>();
             builder.Services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
 
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+            builder.Services.AddIdentity<AppUser, IdentityRole>()
                         .AddEntityFrameworkStores<AgricultureContext>();
 
             builder.Services.ContainerDependencies();

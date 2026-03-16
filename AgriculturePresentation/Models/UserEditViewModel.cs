@@ -7,5 +7,7 @@
         public string? Password { get; set; }
         public string? ConfirmPassword { get; set; }
         public string? CurrentPassword { get; set; }
+        public string? ImageUrl { get; set; }
+        public IFormFile? ImageFile { get; set; }
     }
 }
