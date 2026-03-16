@@ -11,7 +11,7 @@ This project was initially inspired by Murat Yücedağ's *"Step-by-Step N-Tier A
 
 ## 👩‍💻 Developer Story: From QA to Backend
 
-Hello! I am a software developer with a 7-year background in Translation, Localization, and Quality Assurance (QA). After years of hunting for edge cases to ensure end-user products are "flawless" & helping Turkish developers understand all about Amawon Web Services, I decided to cross over to the other side of the table and build systems from the ground up.
+Hello! I am a software developer with a 7-year background in Translation, Localization, and Quality Assurance (QA). After years of hunting for edge cases to ensure end-user products are "flawless" & helping Turkish developers understand all about Amazon Web Services, I decided to cross over to the other side of the table and build systems from the ground up.
 
 This is my first full-scale CRUD and Backend project. However, I channeled my rigorous QA mindset directly into the code quality and user experience. Instead of the typical *"if it works, don't touch it"* approach, I focused on questions like *"If this breaks, how do we gracefully guide the user?"*, *"How does this render on a 320px screen?"* and *"How do we prevent data leaks here?"*
 
