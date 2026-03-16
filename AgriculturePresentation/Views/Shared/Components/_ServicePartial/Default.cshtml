@@ -52,6 +52,71 @@
         justify-content: center !important;
         text-align: center !important;
     }
+
+    .glass-empty-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 40px 15px !important;
+        background: transparent !important;
+        margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .glass-card {
+        background: rgba(15, 23, 42, 0.75) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 16px !important;
+        padding: 40px 25px !important;
+        max-width: 500px !important;
+        width: 100% !important;
+        text-align: center !important;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .glass-icon-wrapper {
+        background: rgba(255, 255, 255, 0.05) !important;
+        padding: 15px !important;
+        border-radius: 50% !important;
+        margin-bottom: 20px !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        display: inline-block !important;
+    }
+
+        .glass-icon-wrapper img {
+            width: 80px !important;
+            height: 80px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+        }
+
+    .glass-title {
+        color: #f58703 !important;
+        font-weight: 700 !important;
+        font-size: 24px !important;
+        margin-bottom: 12px !important;
+        letter-spacing: 0.5px !important;
+        line-height: 1.3 !important;
+        text-transform: uppercase !important;
+    }
+
+    .glass-text {
+        color: #e2e8f0 !important;
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+        margin: 0 !important;
+        font-weight: 400 !important;
+    }
 </style>
 
 <div class="sevices-w3layouts" id="services">
@@ -94,7 +159,21 @@
             }
             else
             {
-                <div class="alert alert-light text-center">Hizmet bilgileri şu an yüklenemiyor.</div>
+                <div class="glass-empty-container">
+                    <div class="glass-card">
+                        
+                        <div class="glass-icon-wrapper">
+                            <img src="/images/emptystate-cute-fallback.png" alt="Dinlenen Traktör" />
+                        </div>
+                        
+                        <h4 class="glass-title">Tarlada Hazırlıklar Sürüyor...</h4>
+                        
+                        <p class="glass-text">
+                            Traktörümüz uykusunu alıyor, ekibimiz ise yeni sezon için kolları sıvadı. Çok yakında taptaze ve modern tarım hizmetlerimizle bu alanı yeşillendireceğiz!
+                        </p>
+                        
+                    </div>
+                </div>
             }
         </div>
         <div class="clearfix"> </div>
