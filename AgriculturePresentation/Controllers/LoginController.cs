@@ -1,4 +1,5 @@
-﻿using AgriculturePresentation.Models;
+﻿using EntityLayer.Concrete;
+using AgriculturePresentation.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +9,10 @@ namespace AgriculturePresentation.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public LoginController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -58,13 +59,13 @@ namespace AgriculturePresentation.Controllers
                 return View(registerViewModel);
             }
 
-            IdentityUser identityUser = new IdentityUser()
+            AppUser appUser = new AppUser()
             {
                 UserName = registerViewModel.UserName,
                 Email = registerViewModel.Mail
             };
 
-            var result = await _userManager.CreateAsync(identityUser, registerViewModel.Password);
+            var result = await _userManager.CreateAsync(appUser, registerViewModel.Password);
 
             if (result.Succeeded)
             {
