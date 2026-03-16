@@ -9,31 +9,48 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Adres</h4>
+            <h4 class="card-title">Adres Bilgileri</h4>
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Açık Adres</th>
-                            <th>Şehir/Ülke</th>
-                            <th>E-posta Adresi</th>
-                            <th>Telefon Numarası</th>
-                            <th>Güncelle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                @if (Model != null && Model.Any())
+                {
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <td>@item.Description1</td>
-                                <td>@item.Description2</td>
-                                <td>@item.Description3</td>
-                                <td>@item.Description4</td>
-                                <td><a asp-controller="Address" asp-action="EditAddress" asp-route-id="@item.AddressID" class="btn btn-outline-success">Güncelle</a></td>
+                                <th>Açık Adres</th>
+                                <th>Şehir/Ülke</th>
+                                <th>E-posta Adresi</th>
+                                <th>Telefon Numarası</th>
+                                <th>Güncelle</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Description1</td>
+                                    <td>@item.Description2</td>
+                                    <td>@item.Description3</td>
+                                    <td>@item.Description4</td>
+                                    <td><a asp-controller="Address" asp-action="EditAddress" asp-route-id="@item.AddressID" class="btn btn-outline-success">Güncelle</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    
+                    <br />
+                    <a asp-controller="Address" asp-action="AddAddress" class="btn btn-outline-info">Yeni Adres Ekle</a>
+                }
+                else
+                {
+                    <div class="empty-state text-center py-5" style="border: 2px dashed #ced4da; border-radius: 12px; background-color: #f8f9fa; margin-top: 20px; margin-bottom: 20px;">
+                        <i class="mdi mdi-map-marker-outline" style="font-size: 64px; color: #adb5bd;"></i>
+                        <h4 class="mt-3" style="color: #495057; font-weight: 600;">Adres Bilgisi Bulunmuyor</h4>
+                        <p style="color: #6c757d; font-size: 15px; margin-bottom: 25px;">Sistemde kayıtlı herhangi bir iletişim veya adres bilgisi bulunmamaktadır. Ziyaretçilerinizin size ulaşabilmesi için adres bilgilerinizi hemen ekleyebilirsiniz.</p>
+                        <a asp-controller="Address" asp-action="AddAddress" class="btn btn-info btn-lg">
+                            <i class="mdi mdi-plus-circle me-1"></i> Adres Ekle
+                        </a>
+                    </div>
+                }
             </div>
         </div>
     </div>

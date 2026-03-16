@@ -8,8 +8,8 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Ürün Stok Grafiği</h4>
-                <div id="chartdiv" style="width:100%; height:500px;">
-                    <p class="text-muted">Grafik yükleniyor, lütfen bekleyin...</p>
+                <div id="chartdiv" style="width:100%; height:500px; display: flex; align-items: center; justify-content: center;">
+                    <p class="text-muted" id="loading-text">Grafik yükleniyor, lütfen bekleyin...</p>
                 </div>
                 <div class="d-flex justify-content-end mt-4">
                     <a asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-secondary btn-sm">
@@ -22,48 +22,72 @@
 </div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
-
     google.charts.setOnLoadCallback(DrawonLoad);
 
+    // Premium Empty State HTML Şablonu
+    const emptyStateHtml = `
+    <div class="empty-state text-center py-5 w-100" style="border: 2px dashed #ced4da; border-radius: 12px; background-color: #f8f9fa;">
+    <i class="mdi mdi-chart-line" style="font-size: 64px; color: #adb5bd;"></i>
+    <h4 class="mt-3" style="color: #495057; font-weight: 600;">Grafik Verisi Bulunamadı</h4>
+    <p style="color: #6c757d; font-size: 15px; margin-bottom: 25px;">Stok grafiğini oluşturabilmek için sistemde henüz yeterli ürün verisi bulunmuyor.</p>
+    </div>
+    `;
+
+    // Hata Durumu HTML Şablonu
+    const errorStateHtml = `
+    <div class="empty-state text-center py-5 w-100" style="border: 2px dashed #f5c6cb; border-radius: 12px; background-color: #f8d7da;">
+    <i class="mdi mdi-alert-circle-outline" style="font-size: 64px; color: #dc3545;"></i>
+    <h4 class="mt-3" style="color: #721c24; font-weight: 600;">Bağlantı Hatası</h4>
+    <p style="color: #721c24; font-size: 15px; margin-bottom: 25px;">Grafik verileri çekilirken sunucu ile iletişim kurulamadı. Lütfen sayfayı yenileyin.</p>
+    </div>
+    `;
+
     function DrawonLoad() {
-        $.ajax({
-            type: 'GET',
-            url: '/Chart/ProductChart/',
-            success: function (chartsdata) {
-                if (!chartsdata || !chartsdata.jsonlist) {
-                    document.getElementById('chartdiv').innerHTML = "Veri bulunamadı.";
-                    return;
-                }
+    $.ajax({
+    type: 'GET',
+    url: '/Chart/ProductChart/',
+    
+    success: function (chartsdata) {
+    var chartDiv = document.getElementById('chartdiv');
 
-                var Data = chartsdata.jsonlist;
-                var dataTable = new google.visualization.DataTable();
+    if (!chartsdata || !chartsdata.jsonlist || chartsdata.jsonlist.length === 0) {
+    chartDiv.style.height = "auto";
+    chartDiv.innerHTML = emptyStateHtml;
+    return;
+    }
 
-                dataTable.addColumn('string', 'Ürün Adı');
-                dataTable.addColumn('number', 'Stok Sayısı');
+    chartDiv.style.height = "500px";
 
-                
-                for (var i = 0; i < Data.length; i++) {
-                    var name = Data[i].productName || Data[i].productname;
-                    var value = Data[i].productValue || Data[i].productvalue;
+    var Data = chartsdata.jsonlist;
+    var dataTable = new google.visualization.DataTable();
 
-                    dataTable.addRow([name, value]);
-                }
+    dataTable.addColumn('string', 'Ürün Adı');
+    dataTable.addColumn('number', 'Stok Sayısı');
 
-                var chart = new google.visualization.PieChart(document.getElementById('chartdiv'));
+    for (var i = 0; i < Data.length; i++) {
+    var name = Data[i].productName || Data[i].productname;
+    var value = Data[i].productValue || Data[i].productvalue;
+    dataTable.addRow([name, value]);
+    }
 
-                chart.draw(dataTable, {
-                    title: "Ürün - Stok Dağılım İstatistiği",
-                    is3D: true,
-                    pieHole: 0.4,
-                    chartArea: { width: '100%', height: '80%' }
-                });
-            },
-            error: function (xhr) {
-                document.getElementById('chartdiv').innerHTML = "Veri çekilirken bir hata oluştu. (Hata Kodu: " + xhr.status + ")";
-            }
-        });
+    chartDiv.innerHTML = "";
+    var chart = new google.visualization.PieChart(chartDiv);
+
+    chart.draw(dataTable, {
+    title: "Ürün - Stok Dağılım İstatistiği",
+    is3D: true,
+    pieHole: 0.4,
+    chartArea: { width: '100%', height: '80%' }
+    });
+    },
+
+
+    error: function (xhr) {
+
+    document.getElementById('chartdiv').innerHTML = errorStateHtml;
+    }
+    });
     }
 </script>

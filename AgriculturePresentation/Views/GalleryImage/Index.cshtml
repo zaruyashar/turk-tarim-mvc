@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
@@ -57,13 +58,21 @@
                             }
                         </tbody>
                     </table>
+                    
+                    <br />
+                    <a asp-controller="GalleryImage" asp-action="AddGalleryImage" class="btn btn-outline-info">Yeni Görsel Girişi</a>
                 }
                 else
                 {
-                    <div class="alert alert-warning">Sistemde henüz kayıtlı görsel bulunmamaktadır.</div>
+                    <div class="empty-state text-center py-5" style="border: 2px dashed #ced4da; border-radius: 12px; background-color: #f8f9fa; margin-top: 20px; margin-bottom: 20px;">
+                        <i class="mdi mdi-image-multiple-outline" style="font-size: 64px; color: #adb5bd;"></i>
+                        <h4 class="mt-3" style="color: #495057; font-weight: 600;">Henüz Görsel Eklenmemiş</h4>
+                        <p style="color: #6c757d; font-size: 15px; margin-bottom: 25px;">Sistemde kayıtlı hiçbir galeri görseli bulunmuyor. Ziyaretçilerinize sunacağınız projeleri ve anıları hemen eklemeye başlayabilirsiniz.</p>
+                        <a asp-controller="GalleryImage" asp-action="AddGalleryImage" class="btn btn-info btn-lg">
+                            <i class="mdi mdi-plus-circle me-1"></i> İlk Görseli Ekle
+                        </a>
+                    </div>
                 }
-                <br />
-                <a asp-controller="GalleryImage" asp-action="AddGalleryImage" class="btn btn-outline-info">Yeni Görsel Girişi</a>
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@
         <div class="card-body">
             <h4 class="card-title">Hizmet Listesi</h4>
             <div class="table-responsive">
-                @if (false)
+                @if (Model != null && Model.Any())
                 {
                     <table class="table table-striped">
                         <thead>
@@ -50,6 +50,8 @@
                             }
                         </tbody>
                     </table>
+                    <br />
+                    <a asp-controller="Service" asp-action="AddService" class="btn btn-outline-info">Yeni Hizmet Girişi</a>
                 }
                 else
                 {
