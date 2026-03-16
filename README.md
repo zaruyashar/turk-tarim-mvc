@@ -43,14 +43,34 @@ What sets this project apart from a standard tutorial project are the features I
 * **Authentication:** ASP.NET Core Identity
 * **Frontend:** HTML5, CSS3, Bootstrap 4/5, SweetAlert2, Google Charts
 
-## 📸 Screenshots
+## 📸 Showcase & UI/UX Details
 
-[screenshots to be added here]
+Here is a visual tour of the robust features, fallback mechanisms, and responsive designs implemented across the system.
 
-1. **Dashboard & Analytics:** `[screenshot here]` *(Showing Google Charts and stats)*
-2. **Dynamic Profile Settings:** `[screenshot here]` *(Showcasing the custom PP upload area)*
-3. **Empty State UI:** `[screenshot here]` *(Demonstrating the premium glassmorphism "Add your first record" design)*
-4. **Responsive Mobile Views:** `[screenshot here]` *(Showing the perfectly aligned mobile navbar or sidebar)*
+### 1. Dashboard & Profile Management
+The core administration panel featuring dynamic charts, real-time stats, and the custom Identity profile management system.
+* **Dashboard & Analytics:** `[<img width="3071" height="1462" alt="Dashboard   Overview" src="https://github.com/user-attachments/assets/49ead320-1be5-4432-9e1e-cd2ed333c3cb" />]`
+* **Dynamic Profile Settings:** `[<img width="3071" height="1469" alt="Dynamic Profile Settings" src="https://github.com/user-attachments/assets/46471102-a685-4b24-8f1c-210a4d602fd1" />]`
+
+### 2. Bulletproof Fallback Mechanisms
+Demonstrating the global `onerror` architecture. When a physical image file is missing, the system gracefully degrades to custom, context-aware illustrations instead of broken UI elements.
+* **Frontend Fallback (Missing Team Avatar):** `[<img width="3071" height="1476" alt="UI Fallback" src="https://github.com/user-attachments/assets/8bab5888-fbd1-4a2d-9d10-b3779efe3061" />]`
+* **Admin Fallback (Missing Service Icon):** `[<img width="3066" height="1462" alt="Admin Fallback" src="https://github.com/user-attachments/assets/f35dc807-ca53-4a5f-a6b0-7b4e4ac9dbe4" />]`
+
+### 3. Premium "Empty States"
+Replacing standard blank tables with engaging, glassmorphism-inspired UI to encourage user interaction when no data is present.
+* **Frontend Empty State (Announcements):** `[<img width="3071" height="1458" alt="UI Empty State" src="https://github.com/user-attachments/assets/ef55d093-a6d0-4ed8-b63d-8e0028a3b2c5" />]`
+* **Admin Empty State:** `[<img width="3071" height="1453" alt="Admin Empty State" src="https://github.com/user-attachments/assets/b000c2ed-9db7-4a78-91ae-95d60c00204f" />]`
+
+### 4. Responsive Mobile & Tablet Views
+Extensive media queries and flexbox realignments ensure the complex CMS dashboard and frontend are perfectly usable on any device.
+* **Mobile View (iPhone XR):** `[<img width="1836" height="1453" alt="Mobile Interface - 1" src="https://github.com/user-attachments/assets/cb0b1be3-852b-4fd7-a75a-6012b87a9c8c" />]`
+* **Tablet View (iPad Mini):** `[<img width="1809" height="1453" alt="Mobile Interface - 2" src="https://github.com/user-attachments/assets/107195e5-330b-4a4a-b218-f45540267751" />]`
+
+### 5. Polished User Interactions
+Replacing standard browser alerts with elegant, integrated SweetAlert2 notifications for all CRUD operations.
+* **Action Feedback:** `[<img width="3071" height="1458" alt="SweetAlert2" src="https://github.com/user-attachments/assets/f0a0ee06-99a1-425f-be29-794c989aaf41" />]`
+
 
 ## ⚙️ Setup & Installation
 
