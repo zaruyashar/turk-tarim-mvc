@@ -84,6 +84,13 @@ Replacing standard browser alerts with elegant, integrated SweetAlert2 notificat
 * **Action Feedback:** 
 <img width="100%" alt="SweetAlert2" src="https://github.com/user-attachments/assets/f0a0ee06-99a1-425f-be29-794c989aaf41" />
 
+### 6. Read-Only Portfolio Shield (Demo Protection)
+Implemented a robust ID-based data protection system to ensure the integrity of the live demo, preventing the modification or deletion of core portfolio entities while allowing full CRUD testing for newly created data.
+<img width="3071" height="1439" alt="Protected Data SweetAlert" src="https://github.com/user-attachments/assets/84ed4c00-8afe-4193-a595-b530cb3b0351" />
+
+<img width="3071" height="1445" alt="Protected Data SweetAlert 2" src="https://github.com/user-attachments/assets/08c7bf38-7d68-4a6f-b046-56d481afc6b9" />
+
+
 
 ## ⚙️ Setup & Installation
 
