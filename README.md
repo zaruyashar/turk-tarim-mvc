@@ -90,7 +90,9 @@ Implemented a robust ID-based data protection system to ensure the integrity of 
 
 <img width="3071" height="1445" alt="Protected Data SweetAlert 2" src="https://github.com/user-attachments/assets/08c7bf38-7d68-4a6f-b046-56d481afc6b9" />
 
-
+## LIVE DEMO
+- https://zaruyashar.me/Login
+- https://zaruyashar.me/Default/Index/
 
 ## ⚙️ Setup & Installation
 
