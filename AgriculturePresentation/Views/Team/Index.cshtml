@@ -82,3 +82,17 @@
         </div>
     </div>
 </div>
+
+@if (TempData["ProtectedData"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+        title: 'Erişim Engellendi!',
+        text: '@Html.Raw(TempData["ProtectedData"])',
+        icon: 'info',
+        confirmButtonText: 'Anladım',
+        confirmButtonColor: '#3085d6'
+        });
+    </script>
+}

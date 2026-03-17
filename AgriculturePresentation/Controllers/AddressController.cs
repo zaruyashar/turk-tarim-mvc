@@ -35,6 +35,12 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult EditAddress(Address address)
         {
+            if (address.AddressID == 1)
+            {
+                TempData["ProtectedData"] = "Bu iletişim bilgisi portföy sunumu için koruma altındadır ve değiştirilemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
+
             AddressValidator validationRules = new AddressValidator();
             ValidationResult result = validationRules.Validate(address);
 

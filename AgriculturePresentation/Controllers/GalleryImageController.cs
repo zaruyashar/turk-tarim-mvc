@@ -52,6 +52,13 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult DeleteGalleryImage(int id)
         {
+            int[] protectedIds = { 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13 };
+            if (protectedIds.Contains(id))
+            {
+                TempData["ProtectedData"] = "Bu görsel portföy sunumu için koruma altındadır ve silinemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
+
             var value = _galleryImageService.GetById(id);
             if (value == null)
             {
@@ -77,6 +84,13 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult EditGalleryImage(GalleryImage galleryImage)
         {
+            int[] protectedIds = { 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13 };
+            if (protectedIds.Contains(galleryImage.GalleryImageID))
+            {
+                TempData["ProtectedData"] = "Bu görsel portföy sunumu için koruma altındadır ve değiştirilemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
+
             GalleryImageValidator validationRules = new GalleryImageValidator();
             ValidationResult result = validationRules.Validate(galleryImage);
 

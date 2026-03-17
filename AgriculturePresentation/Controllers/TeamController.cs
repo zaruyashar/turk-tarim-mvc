@@ -67,6 +67,13 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult DeleteTeam(int id)
         {
+            int[] protectedIds = { 1, 2, 3, 4 };
+            if (protectedIds.Contains(id))
+            {
+                TempData["ProtectedData"] = "Bu ekip üyesi portföy sunumu için koruma altındadır ve silinemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
+
             var value = _teamService.GetById(id);
             if (value == null)
             {
@@ -101,6 +108,13 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult EditTeam(TeamEditViewModel model)
         {
+            int[] protectedIds = { 1, 2, 3, 4 };
+            if (protectedIds.Contains(model.TeamID))
+            {
+                TempData["ProtectedData"] = "Bu ekip üyesi portföy sunumu için koruma altındadır ve değiştirilemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
+
             var existingTeam = _teamService.GetById(model.TeamID);
 
             if (existingTeam == null)

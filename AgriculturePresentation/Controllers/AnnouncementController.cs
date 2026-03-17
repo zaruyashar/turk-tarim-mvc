@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,6 +38,13 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult DeleteAnnouncement(int id)
         {
+            int[] protectedIds = { 3, 6, 8 };
+            if (protectedIds.Contains(id))
+            {
+                TempData["ProtectedData"] = "Bu duyuru portföy sunumu için koruma altındadır ve silinemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
+
             var values = _announcementService.GetById(id);
             if (values == null)
             {
@@ -60,8 +68,14 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult EditAnnouncement(Announcement announcement)
         {
-            var value = _announcementService.GetById(announcement.AnnouncementID);
+            int[] protectedIds = { 3, 6, 8 };
+            if (protectedIds.Contains(announcement.AnnouncementID))
+            {
+                TempData["ProtectedData"] = "Bu duyuru portföy sunumu için koruma altındadır ve değiştirilemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
 
+            var value = _announcementService.GetById(announcement.AnnouncementID);
             value.Title = announcement.Title;
             value.Description = announcement.Description;
             value.Date = announcement.Date;
@@ -73,6 +87,13 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult ChangeStatusToTrue(int id)
         {
+            int[] protectedIds = { 3, 6, 8 };
+            if (protectedIds.Contains(id))
+            {
+                TempData["ProtectedData"] = "Bu duyuru portföy sunumu için koruma altındadır ve değiştirilemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
+
             _announcementService.AnnouncementStatusToTrue(id);
             return RedirectToAction("Index");
         }
@@ -80,6 +101,13 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult ChangeStatusToFalse(int id)
         {
+            int[] protectedIds = { 3, 6, 8 };
+            if (protectedIds.Contains(id))
+            {
+                TempData["ProtectedData"] = "Bu duyuru portföy sunumu için koruma altındadır ve değiştirilemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
+
             _announcementService.AnnouncementStatusToFalse(id);
             return RedirectToAction("Index");
         }

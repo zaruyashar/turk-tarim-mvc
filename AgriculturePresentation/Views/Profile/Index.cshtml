@@ -94,3 +94,29 @@
                         });
                     </script>
                 }
+
+                @if (TempData["SuccessMessage"]?.ToString() == "ProfileUpdated")
+                {
+                    <script>
+                        Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Profil bilgileriniz güncellendi.',
+                        icon: 'success',
+                        confirmButtonText: 'Tamam',
+                        confirmButtonColor: '#7062e3'
+                        });
+                    </script>
+                }
+
+                @if (TempData["ProtectedData"] != null)
+                {
+                    <script>
+                        Swal.fire({
+                        title: 'Erişim Engellendi!',
+                        text: '@Html.Raw(TempData["ProtectedData"])',
+                        icon: 'error',
+                        confirmButtonText: 'Anladım',
+                        confirmButtonColor: '#d33'
+                        });
+                    </script>
+                }

@@ -26,6 +26,13 @@ namespace AgriculturePresentation.Controllers
         [HttpPost]
         public IActionResult DeleteMessage(int id)
         {
+            int[] protectedIds = { 12, 47, 48 };
+            if (protectedIds.Contains(id))
+            {
+                TempData["ProtectedData"] = "Bu mesaj portföy sunumu için koruma altındadır ve silinemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
+
             var value = _contactService.GetById(id);
             if (value == null)
             {
@@ -44,7 +51,8 @@ namespace AgriculturePresentation.Controllers
                 return NotFound();
             }
 
-            if (!value.IsRead)
+            int[] protectedIds = { 12, 47, 48 };
+            if (!value.IsRead && !protectedIds.Contains(id))
             {
                 value.IsRead = true;
                 _contactService.Update(value);

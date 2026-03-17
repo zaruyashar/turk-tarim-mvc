@@ -51,6 +51,13 @@ namespace AgriculturePresentation.Controllers
         public async Task<IActionResult> Index(UserEditViewModel p)
         {
             var userName = User.Identity?.Name ?? "";
+
+            if (userName == "fieldMaster" || userName == "superUser")
+            {
+                TempData["ProtectedData"] = "Bu ana yönetici hesabı portföy sunumu için koruma altındadır. Profil bilgileri veya şifresi değiştirilemez. Anlayışınız için teşekkürler!";
+                return RedirectToAction("Index");
+            }
+
             var values = await _userManager.FindByNameAsync(userName);
 
             if (values == null) return NotFound();
