@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.RateLimiting;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace AgriculturePresentation
 {
@@ -78,6 +79,13 @@ namespace AgriculturePresentation
                 };
             });
 
+            builder.Services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                options.KnownIPNetworks.Clear();
+                options.KnownProxies.Clear();
+            });
+
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())
@@ -85,6 +93,8 @@ namespace AgriculturePresentation
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.UseForwardedHeaders();
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
